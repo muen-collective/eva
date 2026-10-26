@@ -1,0 +1,171 @@
+/*
+ * Muen — the light theme with the 3D plate.
+ *
+ * Import AFTER `@muen/eva/theme.css`: that file declares the token *contract*
+ * and the Tailwind aliases; this file supplies the values for Muen and the
+ * material its cards and buttons are made of.
+ *
+ *   @import "@muen/eva/theme.css";
+ *   @import "@muen/eva/themes/muen.css";
+ *
+ * Apply with `<html data-eva-theme="muen">` (or any subtree).
+ *
+ * The rule that outranks taste here: **red is status, never an action.** The
+ * primary action is ink — a black button on white reads as text weight, which
+ * is the house register — and purple stays the accent that marks "this is live".
+ * `--destructive` is for blocked, failed and pending, and nothing else.
+ * (Muen founder, 2026-10-26.)
+ */
+
+[data-eva-theme="muen"] {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+
+  --muted: #f4f4f5;
+  --muted-foreground: #6b6b74;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: #765898;
+
+  --primary: #0a0a0a;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #0a0a0a;
+  --accent: #765898;
+  --accent-foreground: #ffffff;
+
+  --destructive: #c62a3e;
+  --destructive-foreground: #ffffff;
+  --success: #15803d;
+  --success-foreground: #ffffff;
+  --warning: #b45309;
+  --info: #765898;
+
+  --inverse: #0a0a0a;
+  --inverse-foreground: #fafafa;
+
+  --radius: 8px;
+
+  /* The two surfaces the plate is made from. A white emboss cannot read on
+     pure white — the lip rendered 255 on 255 and disappeared — so the wall
+     sits a few levels below the plates it holds. */
+  --wall: #f9f9f9;
+  --plate: #ffffff;
+  --plate-radius: 28px;
+}
+
+/* ---------------------------------------------------------------- plate
+ * A card in the Muen material: a 1px rule, a lit top lip, a shaded bottom
+ * lip, and one soft pool beneath it. No cast shadow — the plate sits ON the
+ * wall, it does not float above it.
+ */
+[data-eva-theme="muen"] .eva-plate {
+  background: linear-gradient(180deg, #ffffff 0px, #ffffff 2px, #f9f9f9 55%, #f4f4f4 100%);
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: var(--plate-radius);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 -1px 0 rgba(0, 0, 0, 0.13),
+    inset 0 -5px 7px -4px rgba(0, 0, 0, 0.07);
+}
+
+[data-eva-theme="muen"] .eva-plate-interactive {
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+[data-eva-theme="muen"] .eva-plate-interactive:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 2px 1px -1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    inset 0 -6px 8px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------------------ embossed button
+ * The button is a plate in miniature: the same two lips, a tighter pool, and
+ * no movement on hover — only the light changes. On press the light reverses,
+ * so the control reads as pushed below the surface rather than animated.
+ */
+[data-eva-theme="muen"] .eva-embossed {
+  --btn-surface: var(--wall);
+  --btn-radius: 28px;
+
+  position: relative;
+  background: var(--btn-surface);
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  box-shadow:
+    inset 1px 0 0 #ffffff,
+    inset 0 1px 0 #ffffff,
+    inset 0 2px 4px -2px rgba(255, 255, 255, 0.65),
+    inset -1px 0 0 rgba(0, 0, 0, 0.03),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.055),
+    inset 0 -3px 6px -5px rgba(0, 0, 0, 0.06),
+    0 1px 2px -1px rgba(0, 0, 0, 0.05),
+    0 4px 10px -8px rgba(0, 0, 0, 0.09),
+    0 10px 20px -18px rgba(0, 0, 0, 0.07);
+  transition:
+    box-shadow 240ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+[data-eva-theme="muen"] .eva-embossed:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 2px 3px -2px rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.045),
+    inset 0 -3px 5px -4px rgba(0, 0, 0, 0.06),
+    0 1px 2px -1px rgba(0, 0, 0, 0.05),
+    0 6px 14px -10px rgba(0, 0, 0, 0.1),
+    0 16px 28px -24px rgba(0, 0, 0, 0.1);
+}
+
+[data-eva-theme="muen"] .eva-embossed:active {
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+[data-eva-theme="muen"] .eva-embossed:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+
+/* Ink fill: the action inside the material. The lip stays, the body darkens. */
+[data-eva-theme="muen"] .eva-embossed[data-fill="ink"] {
+  --btn-surface: #0a0a0a;
+  color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 1px 2px -1px rgba(0, 0, 0, 0.2),
+    0 6px 14px -10px rgba(0, 0, 0, 0.35);
+}
+
+[data-eva-theme="muen"] .eva-embossed[data-fill="ink"]:hover {
+  --btn-surface: #1a1a1a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.65),
+    0 2px 4px -1px rgba(0, 0, 0, 0.22),
+    0 10px 22px -14px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-eva-theme="muen"] .eva-plate-interactive,
+  [data-eva-theme="muen"] .eva-embossed {
+    transition: none;
+  }
+}

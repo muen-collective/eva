@@ -1,0 +1,32 @@
+name: Release
+
+# Changesets flow: a "Version Packages" PR bumps versions + updates CHANGELOG.md
+# from pending changesets; merging it to main publishes to npm and creates a
+# GitHub release. Requires the NPM_TOKEN repository secret (npm access token
+# with publish rights for the mitsu-ui package).
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: changesets/action@v1
+        with:
+          publish: npm run release
+          commit: "chore: version packages"
+          title: "chore: release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,93 @@
+{
+  "name": "@muen/eva",
+  "version": "0.1.0",
+  "description": "EVA design system \u2014 shadcn-style React 18/19 primitives on Radix + Dark EVA theme tokens (vendored from mitsu-ui)",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./theme.css": "./theme.css",
+    "./package.json": "./package.json",
+    "./themes/muen.css": "./themes/muen.css"
+  },
+  "files": [
+    "dist",
+    "theme.css",
+    "README.md",
+    "LICENSE",
+    "themes"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "release": "changeset publish",
+    "changeset": "changeset",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
+  },
+  "peerDependencies": {
+    "lucide-react": "^1.31.0",
+    "radix-ui": "^1.6.7",
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.0",
+    "@storybook/addon-a11y": "^8.6.18",
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/react": "^8.6.18",
+    "@storybook/react-vite": "^8.6.18",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^20",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^30.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "storybook": "^8.6.18",
+    "tailwindcss": "^4.3.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5",
+    "vite": "^6.1.0",
+    "vitest": "^4.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muen-collective/mitsu-ui.git"
+  },
+  "keywords": [
+    "react",
+    "design-system",
+    "shadcn",
+    "radix",
+    "tailwind",
+    "mitsu",
+    "eva"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
