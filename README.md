@@ -67,19 +67,25 @@ of the components.
 |---|---|---|
 | **Dark EVA (Unit 01)** | default (`:root`) | The kit's first theme — dark, cool |
 | **Light EVA (Unit 00)** | `.light` on a wrapper | The pale counterpart |
-| **Muen** | `data-eva-theme="muen"` | White ground, ink actions, purple accent, and the **3D plate** — cards and buttons with a lit top lip, a shaded bottom lip and one soft pool. Import `@muen/eva/themes/muen.css` after `theme.css`. |
+| **Muen** | `data-eva-theme="muen"` | Kept in step with muencollective.com: the wall (#f6f6f6) as the page **and** the card, the OrbAI card material (seven stacked shadows + a 3px white inset + an inner top stroke), a debossed media well, ink actions, purple accent, the embossed button. Import `@muen/eva/themes/muen.css` after `theme.css`. |
 
 ```css
 @import "@muen/eva/theme.css";
 @import "@muen/eva/themes/muen.css";   /* only if you use the Muen theme */
 ```
 
-The Muen material is two classes, so it applies to any element rather than only to our primitives:
+The Muen material is classes on plain elements, so it applies to any markup rather than only to our
+primitives:
 
 ```html
-<div class="eva-plate eva-plate-interactive">…</div>
+<div class="eva-card">
+  <div class="eva-card-media" data-shaped="portrait">…</div>
+  …
+</div>
 <button class="eva-embossed" data-fill="ink">Run</button>
 ```
+
+`.eva-plate` still exists for flat utility surfaces; new cards use `.eva-card`.
 
 **The Muen rule that outranks taste:** red is status — blocked, failed, pending — and never an
 action. The primary action is ink.

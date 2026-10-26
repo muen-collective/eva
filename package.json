@@ -1,6 +1,6 @@
 {
   "name": "@muen/eva",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "EVA design system \u2014 shadcn-style React 18/19 primitives on Radix + Dark EVA theme tokens (vendored from mitsu-ui)",
   "license": "MIT",
   "type": "module",

@@ -1,27 +1,36 @@
 /*
- * Muen — the light theme with the 3D plate.
+ * Muen — the light theme, and the 3D card and button material.
  *
  * Import AFTER `@muen/eva/theme.css`: that file declares the token *contract*
- * and the Tailwind aliases; this file supplies the values for Muen and the
- * material its cards and buttons are made of.
+ * and the Tailwind aliases; this file supplies the values for Muen.
  *
  *   @import "@muen/eva/theme.css";
  *   @import "@muen/eva/themes/muen.css";
  *
  * Apply with `<html data-eva-theme="muen">` (or any subtree).
  *
- * The rule that outranks taste here: **red is status, never an action.** The
- * primary action is ink — a black button on white reads as text weight, which
- * is the house register — and purple stays the accent that marks "this is live".
- * `--destructive` is for blocked, failed and pending, and nothing else.
- * (Muen founder, 2026-10-26.)
+ * **Kept in step with muencollective.com.** The card recipe below is the site's
+ * "OrbAI" material, measured 2026-10-22 — the site's `globals.css` is the source
+ * of truth, and this file is a port, not a second design. When the site's card
+ * changes, this changes with it (and the version bumps).
+ *
+ * The rule that outranks taste: **red is status, never an action.** The primary
+ * action is ink — a black button on the wall reads as text weight — and purple
+ * stays the accent that marks "this is live". `--destructive` is for blocked,
+ * failed and pending, and nothing else. (Muen founder, 2026-10-26.)
  */
 
 [data-eva-theme="muen"] {
-  --background: #ffffff;
+  /* The page is the wall. A white emboss cannot read on pure white — the lip
+     renders 255 on 255 and disappears — so the wall sits a few levels below
+     the surfaces it holds. Measured #f6f6f6 on the site (2026-10-22). */
+  --wall: #f6f6f6;
+  --plate: #ffffff;
+
+  --background: var(--wall);
   --foreground: #0a0a0a;
 
-  --card: #ffffff;
+  --card: var(--wall);
   --card-foreground: #0a0a0a;
   --popover: #ffffff;
   --popover-foreground: #0a0a0a;
@@ -51,51 +60,101 @@
 
   --radius: 8px;
 
-  /* The two surfaces the plate is made from. A white emboss cannot read on
-     pure white — the lip rendered 255 on 255 and disappeared — so the wall
-     sits a few levels below the plates it holds. */
-  --wall: #f9f9f9;
-  --plate: #ffffff;
-  --plate-radius: 28px;
+  /* Component-shaped values, taken from the site's card. */
+  --card-pad: 20px;
+  --card-gap: 20px;
+  --card-radius: 20px;
+  --card-media-radius: 16px;
+  --card-icon-radius: 12px;
+  --card-rule: rgba(0, 0, 0, 0.08);
+  --card-media-bg: linear-gradient(180deg, #e4e4e4 0%, #ececec 100%);
 }
 
-/* ---------------------------------------------------------------- plate
- * A card in the Muen material: a 1px rule, a lit top lip, a shaded bottom
- * lip, and one soft pool beneath it. No cast shadow — the plate sits ON the
- * wall, it does not float above it.
+/* ---------------------------------------------------------------- card
+ * The card IS the wall: no outer border, no second surface. Seven small
+ * stacked shadows plus a 3px white inset lift it, and `::after` draws the 1px
+ * inner stroke along the top edge and radius. Nothing moves on hover — the
+ * pool deepens.
  */
-[data-eva-theme="muen"] .eva-plate {
-  background: linear-gradient(180deg, #ffffff 0px, #ffffff 2px, #f9f9f9 55%, #f4f4f4 100%);
-  border: 1px solid rgba(0, 0, 0, 0.075);
-  border-radius: var(--plate-radius);
+[data-eva-theme="muen"] .eva-card {
+  --card-shadow:
+    0 0.706592px 0.706592px -0.666667px rgba(0, 0, 0, 0.08),
+    0 1.80656px 1.80656px -1.33333px rgba(0, 0, 0, 0.08),
+    0 3.62176px 3.62176px -2px rgba(0, 0, 0, 0.07),
+    0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.07),
+    0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.05),
+    0 30px 30px -4px rgba(0, 0, 0, 0.02),
+    inset 0 3px 1px 0 #ffffff;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  padding: var(--card-pad);
+  border: 0;
+  border-radius: var(--card-radius);
+  background: var(--card);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: box-shadow 320ms ease;
+}
+
+[data-eva-theme="muen"] .eva-card:hover {
   box-shadow:
-    inset 0 1px 0 #ffffff,
-    inset 0 -1px 0 rgba(0, 0, 0, 0.13),
-    inset 0 -5px 7px -4px rgba(0, 0, 0, 0.07);
+    0 0.706592px 0.706592px -0.666667px rgba(0, 0, 0, 0.09),
+    0 1.80656px 1.80656px -1.33333px rgba(0, 0, 0, 0.09),
+    0 3.62176px 3.62176px -2px rgba(0, 0, 0, 0.08),
+    0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.08),
+    0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.06),
+    0 36px 36px -6px rgba(0, 0, 0, 0.03),
+    inset 0 3px 1px 0 #ffffff;
 }
 
-[data-eva-theme="muen"] .eva-plate-interactive {
-  transition:
-    border-color 200ms ease,
-    box-shadow 200ms ease;
+[data-eva-theme="muen"] .eva-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.7);
+  border-left-color: rgba(255, 255, 255, 0.28);
+  border-right-color: rgba(255, 255, 255, 0.28);
+  border-radius: inherit;
+  pointer-events: none;
 }
 
-[data-eva-theme="muen"] .eva-plate-interactive:hover {
-  border-color: rgba(0, 0, 0, 0.14);
+/* The media is a deboss, not a second surface: the panel is pressed into the
+   card, with no outline — only relief. */
+[data-eva-theme="muen"] .eva-card-media {
+  position: relative;
+  flex: none;
+  aspect-ratio: 1.44;
+  border-radius: var(--card-media-radius);
+  background: var(--card-media-bg);
   box-shadow:
-    inset 0 1px 0 #ffffff,
-    inset 0 2px 1px -1px rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
-    inset 0 -6px 8px -4px rgba(0, 0, 0, 0.1);
+    inset 0 1px 2px rgba(0, 0, 0, 0.045),
+    inset 0 4px 10px -6px rgba(0, 0, 0, 0.05),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+  overflow: hidden;
 }
 
-/* ------------------------------------------------------ embossed button
- * The button is a plate in miniature: the same two lips, a tighter pool, and
- * no movement on hover — only the light changes. On press the light reverses,
- * so the control reads as pushed below the surface rather than animated.
+/* A portrait well for garments: the site's 1.44 is a graphic panel, a look is
+   taller than it is wide. */
+[data-eva-theme="muen"] .eva-card-media[data-shaped="portrait"] {
+  aspect-ratio: 4 / 5;
+}
+
+[data-eva-theme="muen"] .eva-card-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* -------------------------------------------------------- embossed button
+ * The button is a plate in miniature: the same two lips, a tighter pool, and no
+ * movement on hover — only the light changes. On press the light reverses.
  */
 [data-eva-theme="muen"] .eva-embossed {
-  --btn-surface: var(--wall);
+  --btn-surface: var(--plate);
   --btn-radius: 28px;
 
   position: relative;
@@ -163,7 +222,37 @@
     0 10px 22px -14px rgba(0, 0, 0, 0.4);
 }
 
+/* ---------------------------------------------------------------- plate
+ * The older flat plate, still used by utility surfaces: a lit top lip, a shaded
+ * bottom lip, no cast. Kept for compatibility; new cards use `.eva-card`.
+ */
+[data-eva-theme="muen"] .eva-plate {
+  background: linear-gradient(180deg, #ffffff 0px, #ffffff 2px, #f9f9f9 55%, #f4f4f4 100%);
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 28px;
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 -1px 0 rgba(0, 0, 0, 0.13),
+    inset 0 -5px 7px -4px rgba(0, 0, 0, 0.07);
+}
+
+[data-eva-theme="muen"] .eva-plate-interactive {
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+[data-eva-theme="muen"] .eva-plate-interactive:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 2px 1px -1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    inset 0 -6px 8px -4px rgba(0, 0, 0, 0.1);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  [data-eva-theme="muen"] .eva-card,
   [data-eva-theme="muen"] .eva-plate-interactive,
   [data-eva-theme="muen"] .eva-embossed {
     transition: none;
