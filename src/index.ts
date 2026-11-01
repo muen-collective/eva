@@ -131,6 +131,8 @@ export { Toggle, toggleVariants } from "./components/ui/toggle"
 
 export { ToggleGroup, ToggleGroupItem } from "./components/ui/toggle-group"
 
+export { LockButton, LockGlyph, lockButtonVariants } from "./components/ui/lock-button"
+
 export {
   Stepper,
   StepperActions,

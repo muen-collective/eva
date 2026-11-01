@@ -109,6 +109,11 @@ group. The group passes `variant`, `size`, `spacing` and `orientation` down to i
 disagree with itself. The pressed state is ink, not `--accent` — a filter that is on has to read as a
 decision, not a hover.
 
+**LockButton** is a lock that opens when pressed. lucide's Lock is split into its two parts so the shackle can
+move — the body stays still, the shackle swings about its **right foot** to 35°, and the free end lifts on the
+left, so the motion reads as opening from left to right. It is controlled (`onLockedChange`), `aria-pressed`
+carries the state, and the accessible name is the action: *Unlock* when shut, *Lock* when open.
+
 ## Design tokens
 
 Dark EVA is the default theme (canonical in `theme.css`, sourced from `DESIGN.md`, frozen
