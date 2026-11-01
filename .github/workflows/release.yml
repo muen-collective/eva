@@ -2,8 +2,15 @@ name: Release
 
 # Changesets flow: a "Version Packages" PR bumps versions + updates CHANGELOG.md
 # from pending changesets; merging it to main publishes to npm and creates a
-# GitHub release. Requires the NPM_TOKEN repository secret (npm access token
-# with publish rights for the @muen/eva package and its scope).
+# GitHub release.
+#
+# PUBLISHING IS OPTIONAL AND OFF BY DEFAULT. `publish` is empty unless an
+# NPM_TOKEN repository secret exists — the action skips publishing when it is
+# empty, so merging a release PR never fails for want of a token. Nothing
+# consumes the npm package today: nerv-app, muen-site and brand-os all pin the
+# GitHub commit sha. To turn publishing on, add NPM_TOKEN (an npm automation
+# token with rights to the @muen scope) and the guard below starts passing it
+# through on the next run.
 on:
   push:
     branches: [main]
@@ -24,7 +31,8 @@ jobs:
       - run: npm ci
       - uses: changesets/action@v1
         with:
-          publish: npm run release
+          # Empty when no token exists -> the action does not attempt to publish.
+          publish: ${{ secrets.NPM_TOKEN != '' && 'npm run release' || '' }}
           commit: "chore: version packages"
           title: "chore: release"
         env:
