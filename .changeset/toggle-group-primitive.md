@@ -9,5 +9,6 @@ is a radio group (one filter chosen), multiple mode is a pressed-button group. T
 `--accent` — in this kit `--accent` is a pale selection surface for hovered rows, and a filter that is on must read
 as a decision rather than a hover.
 
-`ToggleGroup` passes its `variant` and `size` down to its items through context, so a group's items cannot disagree
-about their weight; `variant="outline"` seams the items into a single bordered control.
+`ToggleGroup` passes its `variant`, `size`, `spacing` and `orientation` down to its items through context, so a
+group's items cannot disagree about their weight. Items are **separate buttons by default** (`spacing={2}`, matching
+shadcn's current default); `spacing={0}` seams them into a single segmented control for a mode switch.

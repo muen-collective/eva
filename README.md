@@ -102,10 +102,12 @@ action. The primary action is ink.
 
 Plus `Button` and `cn()` / `buttonVariants` / `badgeVariants` / `tabsListVariants` / `toggleVariants`.
 
-**ToggleGroup** is the segmented control: `type="single"` is a radio group (one filter chosen) and
-`type="multiple"` a pressed-button group. The group passes its `variant` and `size` down to its items, so a
-row cannot disagree with itself; `variant="outline"` seams the items into one bordered control. The pressed
-state is ink, not `--accent` — a filter that is on has to read as a decision, not a hover.
+**ToggleGroup** is a set of toggles used as one control: `type="single"` is a radio group (one filter
+chosen) and `type="multiple"` a pressed-button group. Items are **separate buttons by default**
+(`spacing={2}`); `spacing={0}` seams them into one segmented bar. `orientation="vertical"` stacks the same
+group. The group passes `variant`, `size`, `spacing` and `orientation` down to its items, so a row cannot
+disagree with itself. The pressed state is ink, not `--accent` — a filter that is on has to read as a
+decision, not a hover.
 
 ## Design tokens
 

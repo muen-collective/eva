@@ -61,13 +61,36 @@ export const Multiple: Story = {
   },
 }
 
-/** Outline seams the items into one control. */
+/** Outline is the weight for a filter row: separate buttons, each with its own edge. */
 export const Outline: Story = {
   args: { type: "single" },
   render: () => (
     <ToggleGroup type="single" variant="outline" defaultValue="grid" aria-label="View">
       <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
       <ToggleGroupItem value="list">List</ToggleGroupItem>
+    </ToggleGroup>
+  ),
+}
+
+/** `spacing={0}` seams the items into one segmented control — a mode switch, not a list of choices. */
+export const Connected: Story = {
+  args: { type: "single" },
+  render: () => (
+    <ToggleGroup type="single" variant="outline" spacing={0} defaultValue="grid" aria-label="View">
+      <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
+      <ToggleGroupItem value="list">List</ToggleGroupItem>
+      <ToggleGroupItem value="table">Table</ToggleGroupItem>
+    </ToggleGroup>
+  ),
+}
+
+/** Vertical stacks the same group without changing anything else. */
+export const Vertical: Story = {
+  args: { type: "single" },
+  render: () => (
+    <ToggleGroup type="single" orientation="vertical" defaultValue="all" aria-label="Scope">
+      <ToggleGroupItem value="all">Everything</ToggleGroupItem>
+      <ToggleGroupItem value="mine">Only mine</ToggleGroupItem>
     </ToggleGroup>
   ),
 }
