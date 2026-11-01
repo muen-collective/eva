@@ -1,0 +1,128 @@
+/*
+ * BRANDOS — an EVA theme. Values only; no component is forked.
+ *
+ * Extracted 2026-10-31 from the BrandOS × EVA design lab, which carried it in its own `src/`. It lived
+ * there because the lab vendored the kit; a theme belongs with the kit, once, so any surface can wear it.
+ *
+ * Apply with `<html data-eva-theme="brandos">`, and `data-mode="dark"` for its dark set.
+ */
+
+[data-eva-theme="brandos"] {
+  color-scheme: light;
+
+  --background: #f7f8fb;
+  --foreground: #15163c;
+  --card: #ffffff;
+  --card-foreground: #15163c;
+  --popover: #ffffff;
+  --popover-foreground: #15163c;
+  --muted: #f1f2f7;
+  --muted-foreground: #66677d;
+  --border: #e8e9f0;
+  --input: #d5d7e2;
+  --ring: #3355ff;
+  --link: #3355ff;
+  --segmented-track: #eef2f7;
+  --segmented-thumb: #ffffff;
+  --inverse: #15163c;
+  --inverse-foreground: #ffffff;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #15163c;
+  --sidebar-accent: #f1f2f7;
+  --sidebar-accent-foreground: #15163c;
+  --sidebar-border: #e8e9f0;
+  --sidebar-ring: #0b0d0e;
+  --primary: #3355ff;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f2f7;
+  --secondary-foreground: #15163c;
+  --tertiary: #a8231b;
+  --tertiary-foreground: #ffffff;
+  --tertiary-text: #a8231b;
+  --brand: var(--primary);
+  --accent: #f4f5fb;
+  --accent-foreground: #15163c;
+  --destructive: #a8231b;
+  --destructive-foreground: #ffffff;
+  --success: #2f9e5a;
+  --success-foreground: #ffffff;
+  --warning: #b07b26;
+  --warning-foreground: #ffffff;
+  --info: #0b6bcb;
+  --info-foreground: #ffffff;
+  --chart-1: #3355ff;
+  --chart-2: #5c77ff;
+  --chart-3: #8baff5;
+  --chart-4: #6cd68c;
+  --chart-5: #f0b150;
+  --chart-6: #b9c8f7;
+  --chart-7: #d7dffb;
+  --chart-8: #15163c;
+  --chart-9: #66677d;
+  --chart-10: #e9edfd;
+  --radius: 0.875rem;
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --glow-ring-shadow: 0 0 0 1px rgb(11 13 14 / 0.08);
+  --shadow-toast: 0 8px 30px rgb(11 13 14 / 0.12), 0 2px 8px rgb(11 13 14 / 0.06);
+  --gradient-bg: none;
+  --font-heading: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+[data-eva-theme="brandos"][data-mode="dark"] {
+  color-scheme: dark;
+
+  --background: #12161b;
+  --foreground: #e8ebef;
+  --card: #181d24;
+  --card-foreground: #e8ebef;
+  --popover: #1b212a;
+  --popover-foreground: #e8ebef;
+  --muted: #222932;
+  --muted-foreground: #98a2ae;
+  --border: #2a323c;
+  --input: #333c48;
+  --ring: #e8ebef;
+  --link: #8fb8ff;
+  --segmented-track: #222932;
+  --segmented-thumb: #2f3843;
+  --inverse: #e8ebef;
+  --inverse-foreground: #12161b;
+  --sidebar: #151a20;
+  --sidebar-foreground: #e8ebef;
+  --sidebar-accent: #222a33;
+  --sidebar-accent-foreground: #e8ebef;
+  --sidebar-border: #262e38;
+  --sidebar-ring: #e8ebef;
+  --primary: #e8ebef;
+  --primary-foreground: #12161b;
+  --secondary: #222932;
+  --secondary-foreground: #e8ebef;
+  --tertiary: #ff8f85;
+  --tertiary-foreground: #1a1212;
+  --tertiary-text: #ff8f85;
+  --brand: var(--primary);
+  --accent: #1e252d;
+  --accent-foreground: #e8ebef;
+  --destructive: #ff8f85;
+  --destructive-foreground: #1a1212;
+  --success: #7ddba3;
+  --success-foreground: #0f1a13;
+  --warning: #e8bd7a;
+  --warning-foreground: #1a1509;
+  --info: #8fb8ff;
+  --info-foreground: #0d1526;
+  --chart-1: #dbe4ee;
+  --chart-2: #a9b8c9;
+  --chart-3: #7d8ea3;
+  --chart-4: #5f7188;
+  --chart-5: #4a5a6e;
+  --chart-6: #3d4b5c;
+  --chart-7: #33404f;
+  --chart-8: #2a3644;
+  --chart-9: #222c38;
+  --chart-10: #1b232d;
+  --glow-ring-shadow: 0 0 0 1px rgb(232 235 239 / 0.12);
+  --shadow-toast: 0 8px 30px rgb(0 0 0 / 0.5), 0 2px 8px rgb(0 0 0 / 0.35);
+  --gradient-bg: none;
+}

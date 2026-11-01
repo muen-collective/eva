@@ -1,78 +1,156 @@
 /*
- * Muen — the light theme, and the 3D card and button material.
+ * MUEN — the studio's theme.
  *
- * Import AFTER `@muen/eva/theme.css`: that file declares the token *contract*
- * and the Tailwind aliases; this file supplies the values for Muen.
+ * Reconciled 2026-10-31 from two divergent copies: the kit's original block (still documented in
+ * nerv-app/DESIGN.md and used by the app) and the fuller set measured for the BrandOS × EVA demo
+ * ("derived from muencollective.com, probed live 2026-10-22").
  *
- *   @import "@muen/eva/theme.css";
- *   @import "@muen/eva/themes/muen.css";
+ * The fuller set wins, because an INCOMPLETE theme is the same class of bug as the purple was: every token
+ * the contract declares but the theme omits falls back to the kit's dark default (Unit-01) — a sidebar, a
+ * chart or a tertiary sits in the wrong palette while nothing errors. This block now defines all of them,
+ * including the dark mode the app has not used yet.
  *
- * Apply with `<html data-eva-theme="muen">` (or any subtree).
+ * Two things are kept from the kit's copy, because they are this theme's MATERIAL and the demo never had
+ * them: --wall / --plate, and the card-shaped values behind the 3D plate (the .eva-card block below — a
+ * theme carrying a surface treatment, not a component fork).
  *
- * **Kept in step with muencollective.com.** The card recipe below is the site's
- * "OrbAI" material, measured 2026-10-22 — the site's `globals.css` is the source
- * of truth, and this file is a port, not a second design. When the site's card
- * changes, this changes with it (and the version bumps).
- *
- * The rule that outranks taste: **red is status, never an action.** The primary
- * action is ink — a black button on the wall reads as text weight — and purple
- * stays the accent that marks "this is live". `--destructive` is for blocked,
- * failed and pending, and nothing else. (Muen founder, 2026-10-26.)
+ * The founder's corrections hold: no purple; --ring is ink; --accent is a SELECTION SURFACE (#f4f4f4);
+ * --brand / --tertiary carry the Muen red; --destructive carries failure only.
  */
 
 [data-eva-theme="muen"] {
-  /* The page is the wall. A white emboss cannot read on pure white — the lip
-     renders 255 on 255 and disappears — so the wall sits a few levels below
-     the surfaces it holds. Measured #f6f6f6 on the site (2026-10-22). */
-  --wall: #f6f6f6;
-  --plate: #ffffff;
+  color-scheme: light;
 
-  --background: var(--wall);
+  --background: #f5f5f5;
   --foreground: #0a0a0a;
-
-  --card: var(--wall);
+  --card: #f5f5f5;
   --card-foreground: #0a0a0a;
   --popover: #ffffff;
   --popover-foreground: #0a0a0a;
-
-  --muted: #f4f4f5;
-  --muted-foreground: #6b6b74;
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.12);
+  --muted: #ececec;
+  --muted-foreground: #5f5f66;
+  --border: #e5e5e5;
+  --input: #dcdcdc;
   --ring: #0a0a0a;
-
+  --inverse: #0a0a0a;
+  --inverse-foreground: #ffffff;
+  --brandos-card-shadow: 0 0.706592px 0.706592px -0.666667px rgb(0 0 0 / 0.08), 0 1.80656px 1.80656px -1.33333px rgb(0 0 0 / 0.08), 0 3.62176px 3.62176px -2px rgb(0 0 0 / 0.07), 0 6.8656px 6.8656px -2.66667px rgb(0 0 0 / 0.07), 0 13.6468px 13.6468px -3.33333px rgb(0 0 0 / 0.05), 0 30px 30px -4px rgb(0 0 0 / 0.02), inset 0 3px 1px 0 #ffffff;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-accent: #ececec;
+  --sidebar-accent-foreground: #0a0a0a;
+  --sidebar-border: #e7e7e7;
+  --sidebar-ring: #0a0a0a;
   --primary: #0a0a0a;
   --primary-foreground: #ffffff;
-  --secondary: #f4f4f5;
+  --secondary: #ececec;
   --secondary-foreground: #0a0a0a;
-
-  /*
-   * Muen has NO brand accent hue. The studio is ink, paper and one red for status — the founder's
-   * correction, 2026-10-31: "there is no purple color, the primary color is ink".
-   *
-   * `--accent` therefore goes back to the meaning it has in the primitives, which is not a brand
-   * colour: dropdown-menu and select paint their focus row with `focus:bg-accent` — a subtle
-   * *selection surface*. Purple there was already a misuse, and it is why a shadcn popover dropped
-   * into this theme would have looked wrong. Emphasis is `--primary` / `--foreground`, both ink.
-   * The focus ring was the last place purple survived.
-   */
-  --accent: #f4f4f5;
+  --tertiary: #b42318;
+  --tertiary-foreground: #ffffff;
+  --tertiary-text: #b42318;
+  --brand: #c62a3e;
+  --accent: #f4f4f4;
   --accent-foreground: #0a0a0a;
-
-  --destructive: #c62a3e;
+  --destructive: #b42318;
   --destructive-foreground: #ffffff;
-  --success: #15803d;
+  --success: #1d6b45;
   --success-foreground: #ffffff;
   --warning: #b45309;
-  /* No informational hue either — ink, like everything that is not status. */
-  --info: #0a0a0a;
+  --warning-foreground: #ffffff;
+  --info: #1f5fa8;
+  --info-foreground: #ffffff;
+  --chart-1: #0a0a0a;
+  --chart-2: #c62a3e;
+  --chart-3: #a1a1aa;
+  --chart-4: #d4d4d8;
+  --chart-5: #b42318;
+  --chart-6: #e4e4e7;
+  --chart-7: #f0f0f0;
+  --chart-8: #3f3f46;
+  --chart-9: #71717a;
+  --chart-10: #f5f5f5;
+  --radius: 0.75rem;
+  --segmented-track: #ececec;
+  --segmented-thumb: #ffffff;
+  --font-sans: "Manrope Variable", Manrope, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: "Manrope Variable", Manrope, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-sans);
+  --text-xs: 0.78rem;
+  --text-sm: 0.85rem;
+  --text-base: 1rem;
+  --text-lg: 1.15rem;
+  --glow-ring-shadow: 0 0 0 1px rgb(10 10 10 / 0.04);
+  --shadow-toast: 0 24px 48px rgb(0 0 0 / 0.14);
+  --gradient-bg: none;
+  --wall: #f6f6f6;
+  --plate: #ffffff;
+  --card-pad: 20px;
+  --card-gap: 20px;
+  --card-radius: 20px;
+  --card-media-radius: 16px;
+  --card-icon-radius: 12px;
+  --card-rule: rgba(0, 0, 0, 0.08);
+  --card-media-bg: linear-gradient(180deg, #e4e4e4 0%, #ececec 100%);
+}
 
-  --inverse: #0a0a0a;
-  --inverse-foreground: #fafafa;
+[data-eva-theme="muen"][data-mode="dark"] {
+  color-scheme: dark;
 
+  --background: #141a16;
+  --foreground: #e9e6db;
+  --card: #141a16;
+  --card-foreground: #e9e6db;
+  --popover: #171e18;
+  --popover-foreground: #e9e6db;
+  --muted: #1d251f;
+  --muted-foreground: #96a196;
+  --border: #253028;
+  --input: #2c3830;
+  --ring: #d9d3c3;
+  --link: #d8b98a;
+  --inverse: #e9e6db;
+  --inverse-foreground: #0b0f0c;
+  --sidebar: #0e1310;
+  --sidebar-foreground: #e9e6db;
+  --sidebar-accent: #1b231d;
+  --sidebar-accent-foreground: #e9e6db;
+  --sidebar-border: #232c25;
+  --sidebar-ring: #d9d3c3;
+  --primary: #e9e6db;
+  --primary-foreground: #0b0f0c;
+  --secondary: #202821;
+  --secondary-foreground: #e9e6db;
+  --tertiary: #b8495a;
+  --tertiary-foreground: #f3ece2;
+  --tertiary-text: #c96a78;
+  --brand: #c62a3e;
+  --accent: #1b231d;
+  --accent-foreground: #e9e6db;
+  --destructive: #e0736a;
+  --destructive-foreground: #1a0f0d;
+  --success: #82c092;
+  --success-foreground: #08120b;
+  --warning: #d6a75f;
+  --warning-foreground: #160f06;
+  --info: #93b3cc;
+  --info-foreground: #07111a;
+  --chart-1: #e7e2d4;
+  --chart-2: #b9a17a;
+  --chart-3: #7d917f;
+  --chart-4: #5a6b5c;
+  --chart-5: #3f4c42;
+  --chart-6: #2e3a31;
+  --chart-7: #263128;
+  --chart-8: #202a22;
+  --chart-9: #1a231c;
+  --chart-10: #151d17;
+  --segmented-track: #1d251f;
+  --segmented-thumb: #2c3830;
+  --brandos-card-shadow: 0 0 0 1px rgb(255 255 255 / 0.035), inset 0 1px 0 rgb(255 244 220 / 0.06), 0 24px 48px -24px rgb(0 0 0 / 0.9);
+  --shadow-toast: 0 24px 48px rgb(0 0 0 / 0.6);
+  --wall: #f6f6f6;
+  --plate: #ffffff;
   --radius: 8px;
-
-  /* Component-shaped values, taken from the site's card. */
   --card-pad: 20px;
   --card-gap: 20px;
   --card-radius: 20px;

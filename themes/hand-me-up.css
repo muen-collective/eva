@@ -1,0 +1,129 @@
+/*
+ * HAND ME UP — an EVA theme. Values only; no component is forked.
+ *
+ * Extracted 2026-10-31 from the BrandOS × EVA design lab, which carried it in its own `src/`. It lived
+ * there because the lab vendored the kit; a theme belongs with the kit, once, so any surface can wear it.
+ *
+ * Apply with `<html data-eva-theme="hand-me-up">`, and `data-mode="dark"` for its dark set.
+ */
+
+[data-eva-theme="hand-me-up"] {
+  color-scheme: light;
+
+  --background: #faf9f6;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --muted: #f5f4f1;
+  --muted-foreground: #5f6566;
+  --border: #e0deda;
+  --input: #ccc9c4;
+  --ring: #111111;
+  --link: #111111;
+  --inverse: #111111;
+  --inverse-foreground: #faf9f6;
+  --sidebar: #faf9f6;
+  --sidebar-foreground: #111111;
+  --sidebar-accent: #f5f4f1;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #e0deda;
+  --sidebar-ring: #111111;
+  --primary: #111111;
+  --primary-foreground: #faf9f6;
+  --secondary: #f5f4f1;
+  --secondary-foreground: #111111;
+  --tertiary: #111111;
+  --tertiary-foreground: #faf9f6;
+  --tertiary-text: #111111;
+  --leaf: #4f9d69;
+  --ink-soft: #2a3132;
+  --brand: var(--leaf);
+  --accent: #f5f4f1;
+  --accent-foreground: #111111;
+  --destructive: #7a2f24;
+  --destructive-foreground: #fdf6f2;
+  --success: #4f9d69;
+  --success-foreground: #f4f7f2;
+  --warning: #6f5320;
+  --warning-foreground: #fbf6ec;
+  --info: #3b4b5a;
+  --info-foreground: #f2f6f9;
+  --chart-1: #14110d;
+  --chart-2: #4a443a;
+  --chart-3: #6f685b;
+  --chart-4: #948c7d;
+  --chart-5: #b5ad9d;
+  --chart-6: #cfc7b7;
+  --chart-7: #ddd6c8;
+  --chart-8: #e8e2d6;
+  --chart-9: #efeae0;
+  --chart-10: #f5f1e8;
+  --radius: 0.375rem;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: "Courier Prime", ui-monospace, Menlo, Consolas, monospace;
+  --font-mono: "Courier Prime", ui-monospace, Menlo, Consolas, monospace;
+  --segmented-track: #f5f4f1;
+  --segmented-thumb: #ffffff;
+  --glow-ring-shadow: 0 0 0 1px rgb(20 17 13 / 0.08);
+  --shadow-toast: 0 8px 30px rgb(20 17 13 / 0.12), 0 2px 8px rgb(20 17 13 / 0.06);
+  --gradient-bg: none;
+}
+
+[data-eva-theme="hand-me-up"][data-mode="dark"] {
+  color-scheme: dark;
+
+  --background: #16130f;
+  --foreground: #f2ede3;
+  --card: #1c1813;
+  --card-foreground: #f2ede3;
+  --popover: #201b16;
+  --popover-foreground: #f2ede3;
+  --muted: #241f19;
+  --muted-foreground: #a39a8b;
+  --border: #2e2921;
+  --input: #3a332a;
+  --ring: #f2ede3;
+  --link: #e6d7bd;
+  --inverse: #f2ede3;
+  --inverse-foreground: #16130f;
+  --sidebar: #16130f;
+  --sidebar-foreground: #f2ede3;
+  --sidebar-accent: #241f19;
+  --sidebar-accent-foreground: #f2ede3;
+  --sidebar-border: #2e2921;
+  --sidebar-ring: #f2ede3;
+  --primary: #f2ede3;
+  --primary-foreground: #16130f;
+  --secondary: #241f19;
+  --secondary-foreground: #f2ede3;
+  --tertiary: #f2ede3;
+  --tertiary-foreground: #16130f;
+  --tertiary-text: #f2ede3;
+  --brand: #f2ede3;
+  --accent: #241f19;
+  --accent-foreground: #f2ede3;
+  --destructive: #e08a7c;
+  --destructive-foreground: #1a100d;
+  --success: #9cc39a;
+  --success-foreground: #0d150d;
+  --warning: #d7b478;
+  --warning-foreground: #161006;
+  --info: #9db6c9;
+  --info-foreground: #0a1116;
+  --chart-1: #f2ede3;
+  --chart-2: #cfc4ae;
+  --chart-3: #a89c86;
+  --chart-4: #857a67;
+  --chart-5: #675f50;
+  --chart-6: #4f493d;
+  --chart-7: #3d382f;
+  --chart-8: #2f2a23;
+  --chart-9: #26221c;
+  --chart-10: #1e1a15;
+  --segmented-track: #241f19;
+  --segmented-thumb: #3a332a;
+  --glow-ring-shadow: 0 0 0 1px rgb(242 237 227 / 0.12);
+  --shadow-toast: 0 24px 48px rgb(0 0 0 / 0.55);
+}
