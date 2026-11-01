@@ -1,8 +1,11 @@
 @import "tailwindcss";
 @import "../../theme.css";
+/* The Muen theme — the whole reason this Storybook exists. Without this line the stage renders the kit's
+   default (dark EVA Unit 01), and every component looks like a different product. */
+@import "../../themes/muen.css";
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
