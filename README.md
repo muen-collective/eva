@@ -21,7 +21,7 @@ provenance.
 
 ```sh
 npm i github:muen-collective/eva          # latest main
-npm i github:muen-collective/eva#v0.1.0   # a tag, once cut
+npm i github:muen-collective/eva#<commit-sha>   # pin the sha, not a tag
 ```
 
 `dist/` is gitignored, so the package carries a `prepare` script and npm builds it on install from
