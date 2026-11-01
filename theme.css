@@ -228,3 +228,30 @@
     0 0 12px rgba(160, 214, 241, 0.25),
     0 0 32px rgba(160, 214, 241, 0.2);
 }
+
+/*
+ * State variants — and this file is the only place they can live in a plain Tailwind v4 host.
+ *
+ * The primitives use shadcn's state variants (`data-checked:`, `data-active:`, `data-open:`, `dark:`). In a
+ * shadcn project those names exist because `shadcn/tailwind.css` declares them. A host that imports only
+ * `tailwindcss` + this file has no such declaration, so Tailwind compiles `data-checked:` to the bare
+ * attribute `[data-checked]` — while Radix writes `data-state="checked"`.
+ *
+ * The result is silent, which is why it survived: a switch renders with no track, tabs show no active state,
+ * dropdowns do not animate, and nothing throws. Found on the BrandOS × EVA work
+ * (`redesign/eva-admin/src/index.css` carried the shim locally); it belongs here, once, for every consumer.
+ *
+ * `dark:` is the same class of bug in reverse: without this declaration Tailwind resolves it to
+ * `prefers-color-scheme`, so an OS in dark mode darkens a light theme's components. Tying it to a `.dark`
+ * ancestor makes dark an explicit choice.
+ */
+@custom-variant dark (&:is(.dark *));
+@custom-variant data-checked (&[data-state="checked"]);
+@custom-variant data-unchecked (&[data-state="unchecked"]);
+@custom-variant data-active (&[data-state="active"]);
+@custom-variant data-open (&[data-state="open"]);
+@custom-variant data-closed (&[data-state="closed"]);
+@custom-variant data-disabled (&[data-disabled]);
+@custom-variant data-horizontal (&[data-orientation="horizontal"]);
+@custom-variant data-vertical (&[data-orientation="vertical"]);
+@custom-variant data-placeholder (&[data-placeholder]);
