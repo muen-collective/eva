@@ -10,6 +10,13 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
+  /*
+   * The kit is a React component library: every primitive uses hooks, context and refs, so the bundle is
+   * a *client* module. Without this banner a consumer that imports a component from a server component
+   * gets `createContext is not a function` at render — which is exactly how the DatePicker failed in
+   * nerv-app on 2026-10-31. A thin client wrapper in every app is not the fix; the directive is.
+   */
+  banner: { js: '"use client"' },
   external: [
     "react",
     "react-dom",
@@ -19,6 +26,8 @@ export default defineConfig({
     "class-variance-authority",
     "clsx",
     "tailwind-merge",
+    "react-day-picker",
+    "date-fns",
   ],
   outExtension({ format }) {
     return { js: format === "cjs" ? ".cjs" : ".js" }
