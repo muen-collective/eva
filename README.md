@@ -128,3 +128,15 @@ npm run build      # ESM + CJS + d.ts -> dist/
 ## License
 
 MIT © Thuy Pham
+
+---
+
+## A note on the first release
+
+`@muen/eva` was first published as **`mitsu-ui` v0.1.0** — 19 shadcn-style React 19 primitives on Radix
+(alert, alert-dialog, badge, button, card, collapsible, dialog, dropdown-menu, input, label, scroll-area,
+select, separator, sheet, skeleton, switch, table, tabs, textarea) and the dark EVA Unit 01 theme tokens.
+
+That changeset lived in `.changeset/initial-release.md` long after the package was renamed, and a changeset
+naming a package that no longer exists makes `changesets version` fail for every push on `main` — which is
+exactly what happened. The text lives here now, where it cannot break a release.

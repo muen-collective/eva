@@ -3,7 +3,7 @@ name: Release
 # Changesets flow: a "Version Packages" PR bumps versions + updates CHANGELOG.md
 # from pending changesets; merging it to main publishes to npm and creates a
 # GitHub release. Requires the NPM_TOKEN repository secret (npm access token
-# with publish rights for the mitsu-ui package).
+# with publish rights for the @muen/eva package and its scope).
 on:
   push:
     branches: [main]
