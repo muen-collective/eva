@@ -39,21 +39,33 @@
   --muted-foreground: #6b6b74;
   --border: rgba(0, 0, 0, 0.08);
   --input: rgba(0, 0, 0, 0.12);
-  --ring: #765898;
+  --ring: #0a0a0a;
 
   --primary: #0a0a0a;
   --primary-foreground: #ffffff;
   --secondary: #f4f4f5;
   --secondary-foreground: #0a0a0a;
-  --accent: #765898;
-  --accent-foreground: #ffffff;
+
+  /*
+   * Muen has NO brand accent hue. The studio is ink, paper and one red for status — the founder's
+   * correction, 2026-10-31: "there is no purple color, the primary color is ink".
+   *
+   * `--accent` therefore goes back to the meaning it has in the primitives, which is not a brand
+   * colour: dropdown-menu and select paint their focus row with `focus:bg-accent` — a subtle
+   * *selection surface*. Purple there was already a misuse, and it is why a shadcn popover dropped
+   * into this theme would have looked wrong. Emphasis is `--primary` / `--foreground`, both ink.
+   * The focus ring was the last place purple survived.
+   */
+  --accent: #f4f4f5;
+  --accent-foreground: #0a0a0a;
 
   --destructive: #c62a3e;
   --destructive-foreground: #ffffff;
   --success: #15803d;
   --success-foreground: #ffffff;
   --warning: #b45309;
-  --info: #765898;
+  /* No informational hue either — ink, like everything that is not status. */
+  --info: #0a0a0a;
 
   --inverse: #0a0a0a;
   --inverse-foreground: #fafafa;
