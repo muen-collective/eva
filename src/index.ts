@@ -127,6 +127,10 @@ export {
   tabsListVariants,
 } from "./components/ui/tabs"
 
+export { Toggle, toggleVariants } from "./components/ui/toggle"
+
+export { ToggleGroup, ToggleGroupItem } from "./components/ui/toggle-group"
+
 export {
   Stepper,
   StepperActions,

@@ -90,17 +90,22 @@ primitives:
 **The Muen rule that outranks taste:** red is status — blocked, failed, pending — and never an
 action. The primary action is ink.
 
-## Components (19 primitives)
+## Components (21 primitives)
 
 | Category | Components |
 | --- | --- |
 | Overlay | Dialog, AlertDialog, Sheet, DropdownMenu |
-| Selection | Tabs, Select, Switch |
+| Selection | Tabs, Select, Switch, Toggle, ToggleGroup |
 | Forms | Input, Textarea, Label |
 | Layout | Card, Separator, ScrollArea, Table, Collapsible |
 | Feedback | Alert, Badge, Skeleton |
 
-Plus `Button` and `cn()` / `buttonVariants` / `badgeVariants` / `tabsListVariants`.
+Plus `Button` and `cn()` / `buttonVariants` / `badgeVariants` / `tabsListVariants` / `toggleVariants`.
+
+**ToggleGroup** is the segmented control: `type="single"` is a radio group (one filter chosen) and
+`type="multiple"` a pressed-button group. The group passes its `variant` and `size` down to its items, so a
+row cannot disagree with itself; `variant="outline"` seams the items into one bordered control. The pressed
+state is ink, not `--accent` — a filter that is on has to read as a decision, not a hover.
 
 ## Design tokens
 
