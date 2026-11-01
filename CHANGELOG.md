@@ -1,5 +1,29 @@
 # @muen/eva
 
+## 0.7.0
+
+### Minor Changes
+
+- 7bd9c5c: Add `LockButton` (+ the bare `LockGlyph`): a lock that opens when pressed.
+
+  lucide's Lock split into its two parts, so the shackle can move: the body stays still and the shackle swings about
+  its **right foot** to 35°, lifting the free end off the body on the left. One transition on two elements rather than
+  a second icon swapped in — a swap cannot show which way the lock went, and at 16px the motion is the whole message.
+
+  `aria-pressed` carries the state (locked = pressed), the accessible name is the **action** — "Unlock" when shut,
+  "Lock" when open — and the component is controlled: it reports `onLockedChange` and never flips itself.
+
+- 7d0b3bb: Add `Toggle` and `ToggleGroup`: a button with a pressed state, and a set of them as one control.
+
+  Built from shadcn's structure on Radix's behaviour, so the ARIA is the primitive's and not the app's: single mode
+  is a radio group (one filter chosen), multiple mode is a pressed-button group. The pressed state is **ink**, not
+  `--accent` — in this kit `--accent` is a pale selection surface for hovered rows, and a filter that is on must read
+  as a decision rather than a hover.
+
+  `ToggleGroup` passes its `variant`, `size`, `spacing` and `orientation` down to its items through context, so a
+  group's items cannot disagree about their weight. Items are **separate buttons by default** (`spacing={2}`, matching
+  shadcn's current default); `spacing={0}` seams them into a single segmented control for a mode switch.
+
 ## 0.6.0
 
 ### Minor Changes
