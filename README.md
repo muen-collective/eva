@@ -90,7 +90,7 @@ primitives:
 **The Muen rule that outranks taste:** red is status — blocked, failed, pending — and never an
 action. The primary action is ink.
 
-## Components (21 primitives)
+## Components (22 primitives)
 
 | Category | Components |
 | --- | --- |
@@ -98,7 +98,7 @@ action. The primary action is ink.
 | Selection | Tabs, Select, Switch, Toggle, ToggleGroup |
 | Forms | Input, Textarea, Label |
 | Layout | Card, Separator, ScrollArea, Table, Collapsible |
-| Feedback | Alert, Badge, Skeleton |
+| Feedback | Alert, Badge, Skeleton, Toast |
 
 Plus `Button` and `cn()` / `buttonVariants` / `badgeVariants` / `tabsListVariants` / `toggleVariants`.
 
@@ -108,6 +108,24 @@ chosen) and `type="multiple"` a pressed-button group. Items are **separate butto
 group. The group passes `variant`, `size`, `spacing` and `orientation` down to its items, so a row cannot
 disagree with itself. The pressed state is ink, not `--accent` — a filter that is on has to read as a
 decision, not a hover.
+
+**Toast** is a result said at the edge of the screen, because a confirmation printed in the page pushes
+everything below it down. Radix owns focus, swipe-to-dismiss and the labelled region; feedback colour
+lives in the border and the text stays neutral. `<Toast>` is self-contained — provider, root, viewport —
+so a screen writes one line:
+
+```tsx
+<Toast tone="success">“#d126a1” added as a draft colour</Toast>
+```
+
+| prop | type | default | what it does |
+| --- | --- | --- | --- |
+| `tone` | `default` · `success` · `destructive` | `default` | the border's colour; the text stays neutral |
+| `duration` | number (ms) | `4000` | when it closes itself; Radix pauses it while hovered or focused |
+| `onOpenChange` | `(open: boolean) => void` | — | hears the dismissal |
+
+The parts (`ToastProvider`, `ToastViewport`, `ToastRoot`, `ToastTitle`, `ToastDescription`,
+`ToastAction`, `ToastClose`) are exported for a consumer that wants its own placement or a stack.
 
 **LockButton** is a lock that opens when pressed. lucide's Lock is split into its two parts so the shackle can
 move — the body stays still, the shackle swings about its **right foot** to 35°, and the free end lifts on the
