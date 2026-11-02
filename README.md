@@ -120,7 +120,7 @@ so a screen writes one line:
 
 | prop | type | default | what it does |
 | --- | --- | --- | --- |
-| `tone` | `default` · `success` · `destructive` | `default` | the border's colour; the text stays neutral |
+| `tone` | `default` · `success` · `destructive` · `info` | `default` | the border's colour; `info` is the one filled tone |
 | `duration` | number (ms) | `4000` | when it closes itself; Radix pauses it while hovered or focused |
 | `onOpenChange` | `(open: boolean) => void` | — | hears the dismissal |
 

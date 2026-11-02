@@ -27,6 +27,11 @@ export const Success: Story = {
   args: { tone: "success", children: "Board published as v2" },
 }
 
+export const Notice: Story = {
+  name: "Info (navy)",
+  args: { tone: "info", children: "“#d126a1” added as a draft colour" },
+}
+
 export const Refusal: Story = {
   args: { tone: "destructive", children: "A board needs a name" },
 }

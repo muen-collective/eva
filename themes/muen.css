@@ -57,8 +57,8 @@
   --success-foreground: #ffffff;
   --warning: #b45309;
   --warning-foreground: #ffffff;
-  --info: #1f5fa8;
-  --info-foreground: #ffffff;
+  --info: #1b2a4a;
+  --info-foreground: #f6f6f6;
   --chart-1: #0a0a0a;
   --chart-2: #c62a3e;
   --chart-3: #a1a1aa;
@@ -132,7 +132,7 @@
   --success-foreground: #08120b;
   --warning: #d6a75f;
   --warning-foreground: #160f06;
-  --info: #93b3cc;
+  --info: #8aa2c4;
   --info-foreground: #07111a;
   --chart-1: #e7e2d4;
   --chart-2: #b9a17a;

@@ -30,6 +30,8 @@ const toastVariants = cva(
         default: "border-border",
         success: "border-success/50",
         destructive: "border-destructive/50",
+        /* The one filled tone: a notice is the product speaking, so it is allowed a ground of its own. */
+        info: "border-info bg-info text-info-foreground",
       },
     },
     defaultVariants: {
