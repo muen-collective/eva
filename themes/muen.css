@@ -163,7 +163,14 @@
  * The card IS the wall: no outer border, no second surface. Seven small
  * stacked shadows plus a 3px white inset lift it, and `::after` draws the 1px
  * inner stroke along the top edge and radius. Nothing moves on hover — the
- * pool deepens.
+ * pool deepens, and that pool has a name (`--card-shadow-hover`) so the state
+ * map can point at it.
+ *
+ * The card has four states. Hover and focus are transient and stay with the
+ * browser; **selected** and **disabled** are persistent facts about the card,
+ * so they are a `data-state` the surface sets. Selection takes the plate and an
+ * inset hairline rather than a border, so the card's box never moves; disabled
+ * is the same card at half weight with no pointer.
  */
 [data-eva-theme="muen"] .eva-card {
   --card-shadow:
@@ -173,6 +180,15 @@
     0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.07),
     0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.05),
     0 30px 30px -4px rgba(0, 0, 0, 0.02),
+    inset 0 3px 1px 0 #ffffff;
+
+  --card-shadow-hover:
+    0 0.706592px 0.706592px -0.666667px rgba(0, 0, 0, 0.09),
+    0 1.80656px 1.80656px -1.33333px rgba(0, 0, 0, 0.09),
+    0 3.62176px 3.62176px -2px rgba(0, 0, 0, 0.08),
+    0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.08),
+    0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.06),
+    0 36px 36px -6px rgba(0, 0, 0, 0.03),
     inset 0 3px 1px 0 #ffffff;
 
   position: relative;
@@ -189,14 +205,19 @@
 }
 
 [data-eva-theme="muen"] .eva-card:hover {
-  box-shadow:
-    0 0.706592px 0.706592px -0.666667px rgba(0, 0, 0, 0.09),
-    0 1.80656px 1.80656px -1.33333px rgba(0, 0, 0, 0.09),
-    0 3.62176px 3.62176px -2px rgba(0, 0, 0, 0.08),
-    0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.08),
-    0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.06),
-    0 36px 36px -6px rgba(0, 0, 0, 0.03),
-    inset 0 3px 1px 0 #ffffff;
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Persistent states: the surface sets `data-state`; the theme owns the material.
+   Selected sits after :hover so a selected card keeps its settled edge. */
+[data-eva-theme="muen"] .eva-card[data-state="selected"] {
+  background: var(--plate);
+  box-shadow: var(--card-shadow), inset 0 0 0 1px var(--border);
+}
+
+[data-eva-theme="muen"] .eva-card[data-state="disabled"] {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 [data-eva-theme="muen"] .eva-card::after {
