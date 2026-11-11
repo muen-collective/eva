@@ -57,6 +57,20 @@
   --success-foreground: #ffffff;
   --warning: #b45309;
   --warning-foreground: #ffffff;
+  /*
+   * MARKUP — the annotation ink.
+   *
+   * The one layer that sits on top of a picture and must not hide in it: ink on a photograph is invisible and a
+   * hairline cannot be a mark. This is the theme's single chromatic accent, and it exists for exactly one job —
+   * the stroke a markup brush draws and the bubble where a comment sits. Semantic, not a colour name: if the
+   * accent ever changes, every surface that marks something follows.
+   *
+   * Chosen with the founder on 2026-11-11 after reviewing the shared board; the studio carried it app-side
+   * until this release. White on it is 5.3:1; it is 4.9:1 on the paper ground.
+   */
+  --markup: #d1006f;
+  --markup-foreground: #ffffff;
+
   --info: #1b2a4a;
   --info-foreground: #f6f6f6;
   --chart-1: #0a0a0a;
