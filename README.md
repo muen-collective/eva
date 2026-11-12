@@ -90,12 +90,12 @@ primitives:
 **The Muen rule that outranks taste:** red is status — blocked, failed, pending — and never an
 action. The primary action is ink.
 
-## Components (22 primitives)
+## Components (23 primitives)
 
 | Category | Components |
 | --- | --- |
 | Overlay | Dialog, AlertDialog, Sheet, DropdownMenu |
-| Selection | Tabs, Select, Switch, Toggle, ToggleGroup |
+| Selection | Tabs, Select, Slider, Switch, Toggle, ToggleGroup |
 | Forms | Input, Textarea, Label |
 | Layout | Card, Separator, ScrollArea, Table, Collapsible |
 | Feedback | Alert, Badge, Skeleton, Toast |
@@ -108,6 +108,11 @@ chosen) and `type="multiple"` a pressed-button group. Items are **separate butto
 group. The group passes `variant`, `size`, `spacing` and `orientation` down to its items, so a row cannot
 disagree with itself. The pressed state is ink, not `--accent` — a filter that is on has to read as a
 decision, not a hover.
+
+**Slider** is a value (one thumb) or a range (two) on a track; it is the control for a number that has a
+floor and a ceiling, not a text field that happens to accept digits. Radix owns the arrows, Home/End, page
+steps and the ARIA; the kit owns the material — a `muted` track, an ink range and thumb, a `ring` focus.
+`aria-label`/`aria-labelledby` go to the thumb, because that is the element with `role="slider"`.
 
 **Toast** is a result said at the edge of the screen, because a confirmation printed in the page pushes
 everything below it down. Radix owns focus, swipe-to-dismiss and the labelled region; feedback colour
