@@ -28,6 +28,15 @@ npm i github:muen-collective/eva#<commit-sha>   # pin the sha, not a tag
 git. A dependency install therefore needs the dev dependencies available — npm provides them for git
 dependencies, a plain `npm i --omit=dev` does not.
 
+## Storybook
+
+**<https://muen-collective.github.io/eva/>** — every component, every state, the props tables, and the
+prose guides. It is published from `main` by `.github/workflows/storybook-pages.yml`.
+
+Run it locally with `npm run storybook` (port 6006). That dev server also exposes an **MCP server** at
+`/mcp`, so an agent can read a component's real props and stories instead of guessing them — see
+[README.storybook.md](./README.storybook.md) for the connection and the story-writing rules.
+
 ## Requirements
 
 - React 18.2+ or 19
