@@ -1,0 +1,102 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="EVA/Docs/Foundations: Tokens" />
+
+# Tokens
+
+Tokens are the contract between the kit and its themes. There are 108 of them; the ones below are the ones a
+component author actually reaches for.
+
+Dark EVA values are the canonical ones (from `theme.css`, sourced from `DESIGN.md`). Muen values are shown for
+comparison, because seeing them side by side is how you tell which tokens a theme is expected to move.
+
+## Surfaces and text
+
+| Token | Dark EVA | Muen | Used for |
+| --- | --- | --- | --- |
+| `--background` | `oklch(0.13 0 0)` | `#f5f5f5` | The page |
+| `--foreground` | `oklch(0.95 0 0)` | `#0a0a0a` | Default text |
+| `--card` | `oklch(0.08 0 0)` | `#f5f5f5` | Card and alert surfaces |
+| `--card-foreground` | `oklch(0.95 0 0)` | `#0a0a0a` | Text on a card |
+| `--popover` | `oklch(0.08 0 0)` | `#ffffff` | Menus, popovers, dialogs |
+| `--popover-foreground` | `oklch(0.95 0 0)` | `#0a0a0a` | Text in a popover |
+| `--muted` | `oklch(0.22 0 0)` | `#ececec` | Quiet fills, skeletons, tab tracks |
+| `--muted-foreground` | `oklch(0.68 0 0)` | `#5f5f66` | Secondary text, captions |
+| `--border` | `oklch(0.3 0 0)` | `#e5e5e5` | Every rule and edge |
+| `--input` | `oklch(0.3 0 0)` | `#dcdcdc` | Field borders |
+| `--ring` | `oklch(0.66 0.11 292)` | `#0a0a0a` | Focus ring |
+
+`--ring` is the single most theme-specific token in the set: Dark EVA's is a purple that measures 6.2:1 on the
+background, and Muen's is plain ink. Focus has to be visible in both, so the token exists rather than each
+component choosing a ring.
+
+## Brand and identity
+
+| Token | Dark EVA | Muen | Note |
+| --- | --- | --- | --- |
+| `--primary` | `#765898` | `#0a0a0a` | The brand triad's first colour; Muen uses ink |
+| `--primary-foreground` | `#ffffff` | `#ffffff` | Ink on primary |
+| `--secondary` | `#52d053` | `#ececec` | Second triad colour; Muen uses a surface |
+| `--tertiary` | `#c62a3e` | `#b42318` | Third triad colour |
+| `--tertiary-text` | `#e0485c` | `#b42318` | The **text-safe** companion of tertiary |
+| `--brand` | `var(--primary)` | `#c62a3e` | Identity only |
+| `--accent` | `oklch(0.16 0.02 55)` | `#f4f4f4` | A **selection surface**, never a brand hue |
+| `--accent-foreground` | `oklch(0.94 0.02 55)` | `#0a0a0a` | Text on accent |
+
+`--tertiary-text` is the pattern worth understanding: a family can need a companion colour for text, because
+a fill and a label on that fill are different contrast problems. `--destructive` follows the same pattern in
+Dark EVA, where it is the ink of destructive text and `--destructive-foreground` is the ink *on* a fill.
+
+`--accent` is a surface, not a hue. That is why a Toggle that is **on** uses ink, not accent — a filter that is
+applied has to read as a decision, while accent is what a hovered row wears.
+
+## Feedback
+
+| Token | Dark EVA | Muen | Used for |
+| --- | --- | --- | --- |
+| `--destructive` | `oklch(0.65 0.19 28)` | `#b42318` | Failure, and destructive text |
+| `--destructive-foreground` | `oklch(0.25 0.09 28)` | `#ffffff` | Ink on a destructive fill |
+| `--success` | `oklch(0.5 0.12 145)` | `#1d6b45` | Completion |
+| `--warning` | `oklch(0.52 0.16 55)` | `#b45309` | Caution |
+| `--info` | `oklch(0.5 0.15 260)` | `#1f5fa8` | Neutral information |
+
+Feedback is **status only, and non-text** in the components: an Alert carries its variant on the border, and
+the surface and the text stay neutral. The exception is a destructive Badge, whose label colour is
+`--destructive` because a tinted chip has to be readable.
+
+## Dataviz
+
+`--chart-1` through `--chart-10`. The first three are the brand triad, so a chart is in the product's palette
+before anyone picks a colour. These are used by charts only — never for status, never for an action.
+
+## Radius
+
+| Token | Value | Tailwind |
+| --- | --- | --- |
+| `--radius` | `0.5rem` | base |
+| `--radius-sm` | `calc(var(--radius) * 0.6)` | `rounded-sm` |
+| `--radius-md` | `calc(var(--radius) * 0.8)` | `rounded-md` |
+| `--radius-lg` | `var(--radius)` | `rounded-lg` |
+| `--radius-xl` | `calc(var(--radius) * 1.4)` | `rounded-xl` |
+| `--radius-2xl` | `calc(var(--radius) * 1.8)` | `rounded-2xl` |
+| `--radius-3xl` | `calc(var(--radius) * 2.2)` | `rounded-3xl` |
+| `--radius-4xl` | `calc(var(--radius) * 2.6)` | `rounded-4xl` |
+
+The scale is derived from one base, so a theme that rounds the corners changes one number. `rounded-full` is
+not on the scale and is only for pills and avatars.
+
+## Elevation
+
+There are **no shadow tokens in the dark scope**. Depth is a border, and the glow ring is for focus:
+
+- `--glow-ring-shadow` — the brand-tinted focus glow
+- `--shadow-toast` — the one exception, for a surface that genuinely floats
+- `--gradient-bg` — the page's ambient wash
+
+A card that needs to lift off the page lifts with a border. In the Muen theme the elevation is a *material*
+(`--brandos-card-shadow`, seven stacked shadows plus a 3px white inset), not a generic shadow.
+
+## The one rule
+
+**Never add a hex literal in a component. Always reference a token.** If a value does not exist as a token,
+the question is whether the contract is missing a token — not whether this one component can be an exception.

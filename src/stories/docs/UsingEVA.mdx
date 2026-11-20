@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="EVA/Docs/Using EVA" />
+
+# Using EVA
+
+EVA is a React component library on [Radix](https://www.radix-ui.com/) primitives and Tailwind CSS v4. It
+ships components and design tokens, and nothing else: no providers, no global state, no CSS reset, no font
+files. A consuming app owns its page, its fonts and its layout, and gets the kit's behaviour and palette from
+the package.
+
+That is the whole contract, and most questions about "where does this go" are answered by it. If a decision is
+about the page, it belongs to the app. If it is about a control's behaviour or its colour, it belongs here.
+
+## Install
+
+```sh
+npm i github:muen-collective/eva                 # latest main
+npm i github:muen-collective/eva#<commit-sha>    # pin the sha, not a tag
+```
+
+`dist/` is gitignored, so the package carries a `prepare` script and npm builds it on install from git. A git
+dependency therefore needs the dev dependencies available — npm provides them, a plain `npm i --omit=dev`
+does not.
+
+Peer dependencies, which the app installs:
+
+- `react` 18.2+ or 19 · `react-dom`
+- `radix-ui` (single package) · `lucide-react`
+- Tailwind CSS v4, and `@tailwindcss/vite` if the app is on Vite
+
+## Import the tokens once
+
+The theme is a CSS file, imported **before** the app's own tokens so the app can override them:
+
+```css
+@import "tailwindcss";
+@import "@muen/eva/theme.css";
+```
+
+That line is where the palette comes from. Without it every component renders with the Tailwind defaults
+underneath it — the classes are all token references, so the values are simply missing.
+
+## Use a component
+
+```tsx
+import { Button, Dialog, Switch } from "@muen/eva"
+
+<Button variant="secondary">Save</Button>
+```
+
+Components are named, not default-exported. Compound components carry their parts on the same module — a
+`Dialog` needs its `DialogContent`, `DialogHeader` and `DialogTitle`, and the parts are what carry the ARIA
+wiring, so a dialog assembled from bare `div`s is a dialog that is not announced properly.
+
+## Client boundaries
+
+Overlay and stateful components are marked `"use client"` at the top of their file: Dialog, AlertDialog,
+Sheet, DropdownMenu, Popover, Select, Tabs, Toggle, ToggleGroup, Collapsible, Switch, Calendar and Form parts.
+In a React Server Components app they are imported into a client component; the purely presentational ones
+(Button, Badge, Card, Table, Separator, Skeleton, Alert) drop straight into server markup.
+
+## Fonts are yours
+
+The token stacks name `Satoshi` and `JetBrains Mono`, and fall back to the system sans and mono when those
+fonts are not loaded. The package does not ship font files. Loading them is the app's job, and a kit that
+forced a download on every consumer would be making a decision it does not own.
+
+## What EVA does not do
+
+- **No layout.** There is no `Stack`, no `Grid`, no spacing system beyond Tailwind's own scale. Compose with
+  Tailwind utilities.
+- **No routing, no data.** Components take handlers and render props; they never fetch.
+- **No dark mode toggle.** Two themes exist and the app decides which applies — see
+  [Foundations: Theme](/docs/eva-docs-foundations-theme--docs).
+- **No icon set of its own.** Icons are `lucide-react`, which is a peer dependency because the app already
+  has an icon vocabulary and a second one would be a contradiction.
