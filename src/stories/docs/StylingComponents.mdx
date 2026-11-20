@@ -1,0 +1,107 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="EVA/Docs/Styling Components" />
+
+# Styling components
+
+Every component takes a `className`, and that is the supported way to style one. There are two reasons it is
+the supported way: `className` composes through `cn()` so the caller's utility wins over the component's
+default, and it is the only method that keeps the theme contract intact when the classes you add are theme
+tokens.
+
+There is no `styled()` API, no `sx` prop and no style-object notation. This is a Tailwind v4 kit; CSS-in-JS
+would be a second styling system inside a system that already has one.
+
+## Method 1 — `className` (the default)
+
+```tsx
+<Card className="max-w-sm border-dashed">
+  <CardHeader>
+    <CardTitle>Direction locked</CardTitle>
+  </CardHeader>
+</Card>
+```
+
+The component's own classes and yours are merged with `tailwind-merge`, so a conflicting utility in yours
+**replaces** the component's rather than both being emitted and the winner decided by source order:
+
+```tsx
+// the component's rounded-lg is dropped, not duplicated
+<Card className="rounded-none">
+```
+
+That is what makes `className` a real API rather than an escape hatch. It also means two utilities of the
+same family in one string resolve last-wins, which is the behaviour you want from an override.
+
+## Method 2 — `variant` and `size`, before `className`
+
+The kit's variants exist for the states every consumer needs, and they are the right first move: a
+`variant="destructive"` Button gets the correct fill, the correct ink *on* that fill, and the correct focus
+ring, all of which are easy to get subtly wrong by hand.
+
+```tsx
+<Button variant="destructive" size="sm">Delete</Button>
+<Badge variant="outline">Draft</Badge>
+<Alert variant="warning">This direction has no references.</Alert>
+```
+
+Where a variant exists for what you want, use it. Where none fits, use `className` — but if you find yourself
+reproducing the same `className` in three places, that is the signal a variant is missing, not that three
+callers have the same taste.
+
+## Styling a compound component
+
+Compound components expose their parts precisely so that you style a part rather than reaching into it. Pass
+`className` to the part:
+
+```tsx
+<DialogContent className="sm:max-w-lg">
+  <DialogHeader>
+    <DialogTitle className="text-lg">Direction brief</DialogTitle>
+  </DialogHeader>
+</DialogContent>
+```
+
+Do not target the component's internal `data-slot` from an app stylesheet. The slots exist for the kit's own
+CSS and for tests; styling them from outside makes the app depend on internals that are free to change.
+
+## Styling with the theme
+
+When you add a class, use a **token utility** rather than a literal, so the thing you added follows the theme
+the way the component does:
+
+```tsx
+// follows the theme
+<div className="border bg-card text-card-foreground">
+
+// does not — this is a fixed light surface in every theme
+<div className="border bg-white text-black">
+```
+
+Literal colours are the single most common way a themed component turns into a component that only looks
+right in one theme. The tokens are listed in [Tokens](/docs/eva-docs-foundations-tokens--docs).
+
+## The Muen material
+
+The Muen theme carries a surface treatment as classes on plain elements, so it applies to any markup:
+
+```html
+<div class="eva-card">
+  <div class="eva-card-media" data-shaped="portrait">…</div>
+</div>
+<button class="eva-embossed" data-fill="ink">Run</button>
+```
+
+`.eva-plate` still exists for flat utility surfaces; new cards use `.eva-card`. Because these are classes and
+not components, a `div` you wrote yourself can wear the studio's material without importing anything.
+
+## Accessibility is not a style afterwards
+
+Three rules the kit already follows, and which a `className` can silently break:
+
+- **Do not remove the focus ring.** `focus-visible:ring-*` is on every interactive component because focus is
+  how a keyboard user sees where they are. If the ring clashes, restyle it with `ring-ring`, do not delete it.
+- **Do not make colour the only signal.** Feedback is border-led and switches move their thumb for this
+  reason. A `className` that fills an alert with a saturated colour removes the redundancy.
+- **Do not set `pointer-events-none` to make something look disabled.** Use the `disabled` prop; it also sets
+  `aria-disabled` and stops the control being focusable, which the CSS does not.

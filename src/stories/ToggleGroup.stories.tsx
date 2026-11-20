@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 
-import { Toggle } from "../components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "../components/ui/toggle-group"
 
 const meta = {
-  title: "EVA/Primitives/Toggle",
+  title: "EVA/Primitives/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
 } satisfies Meta<typeof ToggleGroup>
@@ -93,19 +92,6 @@ export const Vertical: Story = {
       <ToggleGroupItem value="mine">Only mine</ToggleGroupItem>
     </ToggleGroup>
   ),
-}
-
-/** A single toggle, the unit the group is made of. */
-export const Standalone: Story = {
-  args: { type: "single" },
-  render: () => {
-    const [pressed, setPressed] = React.useState(true)
-    return (
-      <Toggle pressed={pressed} onPressedChange={setPressed} aria-label="Show grid">
-        Grid
-      </Toggle>
-    )
-  },
 }
 
 /** Disabled items keep their place: the row does not reflow because one filter is unavailable. */

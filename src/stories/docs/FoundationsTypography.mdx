@@ -1,0 +1,85 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="EVA/Docs/Foundations: Typography" />
+
+# Typography
+
+EVA ships **font tokens, not font files**. The package names the families it was designed against and falls
+back to the system stacks when they are not loaded, because a component library that forces a font download
+on every consumer is making a decision it does not own.
+
+## Families
+
+| Token | Dark EVA | Muen | Used for |
+| --- | --- | --- | --- |
+| `--font-sans` | `Satoshi`, then system sans | `Manrope Variable`, Manrope, then system sans | All UI text |
+| `--font-heading` | `var(--font-sans)` | `Manrope Variable`, Manrope | Headings, when they differ from body |
+| `--font-mono` | `JetBrains Mono`, then system mono | `var(--font-sans)` | Tokens, ids, code |
+
+Two things are worth noticing. First, `--font-heading` resolves to the sans in Dark EVA: the kit does not use
+a second display face, so a heading is a weight and a size, not a typeface. Second, the Muen theme sets
+`--font-mono` to the sans — the studio has no mono face, so a monospace-looking label is a `tabular-nums`
+decision there, not a font one.
+
+Loading the fonts is the app's job:
+
+```css
+/* the app's own font loading, before the tokens are used */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+```
+
+## Sizes
+
+Components use Tailwind's type scale (`text-xs` through `text-2xl`), which is the scale the kit was built
+against. A theme may retune the small end, and the Muen theme does, so the kit's dense UI reads at the studio's
+own sizes:
+
+| Token | Muen | Tailwind default |
+| --- | --- | --- |
+| `--text-xs` | `0.78rem` | `0.75rem` |
+| `--text-sm` | `0.85rem` | `0.875rem` |
+| `--text-base` | `1rem` | `1rem` |
+| `--text-lg` | `1.15rem` | `1.125rem` |
+
+The pattern here is the same one as the colours: the components say `text-sm`, and the theme decides what
+`text-sm` is. Nothing in `src/components/ui` contains a font size in `px`.
+
+## Weights
+
+Three weights carry the whole kit:
+
+- **400** — body, descriptions, table cells
+- **500** — labels, table headers, the active tab
+- **600** — titles and the one primary action in a surface
+
+There is no 700 and no 300 in the components. A design that needs a fourth weight is a design that needs
+fewer levels of hierarchy.
+
+## The pairings the kit actually uses
+
+| Role | Classes |
+| --- | --- |
+| Card title | `text-base font-medium` (or `text-sm font-medium` in a dense card) |
+| Card description | `text-sm text-muted-foreground` |
+| Field label | `text-sm font-medium leading-none` |
+| Helper / error text | `text-xs`, `text-muted-foreground` or `text-destructive` |
+| Table header | `text-xs font-medium text-muted-foreground` |
+| Table cell | `text-sm` |
+| Numeric column | `text-sm tabular-nums` |
+| Badge | `text-xs font-medium` |
+| Code / token | `font-mono text-xs` |
+
+`tabular-nums` on every numeric column is not decoration. It is what lets the eye compare digits down a
+column, and a column of proportional numerals reads as ragged even when the values are right.
+
+## Two rules
+
+1. **Never put a hex colour or a `px` font size in a component.** Type is `text-*` utilities and colour is
+   token utilities, so a theme can move both.
+2. **Do not reach for a display face to create hierarchy.** In this kit hierarchy is size, weight and colour —
+   in that order. A fourth lever makes the first three unreliable.

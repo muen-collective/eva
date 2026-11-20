@@ -1,0 +1,80 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="EVA/Docs/Foundations: Theme" />
+
+# Theme
+
+EVA has three themes. They share **one set of token names** and differ only in values, so a component never
+knows which theme it is wearing and a theme is never a fork of a component.
+
+The rule that makes this work: **no component contains a hex literal.** Every colour in `src/components/ui` is
+a token reference (`bg-card`, `text-muted-foreground`, `border-input`). If a value has to change for a theme,
+it changes in the theme file, in one place, and every component follows.
+
+## The three themes
+
+| Theme | Applied by | Character |
+| --- | --- | --- |
+| **Dark EVA (Unit 01)** | default, `:root` | The kit's first theme. Deep, cool. |
+| **Light EVA (Unit 00)** | `.light` on a wrapper | The pale counterpart. |
+| **Muen** | `data-eva-theme="muen"` | The studio's theme, kept in step with muencollective.com. |
+
+Dark EVA is the default because it was the first: the values live in `:root`, so a consumer that imports
+`theme.css` and does nothing else gets Unit 01.
+
+```css
+@import "tailwindcss";
+@import "@muen/eva/theme.css";            /* Dark EVA — the default */
+@import "@muen/eva/themes/muen.css";      /* plus Muen, if you use it */
+```
+
+## Applying a theme
+
+A theme is an attribute on a wrapper element, not a class on `<html>` and not a provider:
+
+```tsx
+<div data-eva-theme="muen">
+  <Button>Run</Button>
+</div>
+```
+
+Light EVA is the exception — it is a class, because it is the counterpart of the default rather than a third
+identity:
+
+```tsx
+<div className="light">
+  <Button>Run</Button>
+</div>
+```
+
+## What each theme is allowed to change
+
+Everything a token covers: surfaces, text, borders, focus ring, the brand triad, feedback colours, chart
+colours, radii and the elevation treatment. What a theme **cannot** change is a component's structure or its
+behaviour. A theme that needs a component to look different in a way tokens cannot express is a signal that
+the component is missing a variant, not that a theme should fork it.
+
+The Muen theme is the worked example: it carries a surface *material* — `.eva-card`, `.eva-card-media`,
+`.eva-embossed`, `.eva-plate` — as classes on plain elements. Because they are classes rather than components,
+they apply to any markup, and they live in the theme file because they are that theme's material.
+
+## The Muen rule that outranks taste
+
+Red is **status** — blocked, failed, pending — and never an action. The primary action is ink. In the Muen
+theme `--primary` is `#0a0a0a` and `--destructive` is `#b42318`; a destructive *button* is the one place red
+is an action, and it is fenced off as its own variant for that reason.
+
+## Two rules worth knowing before you add a theme
+
+1. **A theme must define every token the contract declares.** An incomplete theme is the same class of bug as
+   a wrong colour: any token it omits silently falls back to Dark EVA, and a sidebar or a chart sits in the
+   wrong palette while nothing errors. The Muen theme was reconciled once precisely because it had drifted
+   into two incomplete copies.
+2. **Feedback is border-led, not fill-led.** In both the default and Muen themes `--destructive` is also the
+   ink of destructive *text*, and alerts carry their state on the border while the surface and the text stay
+   neutral. A theme that makes feedback a saturated fill will break every alert's contrast.
+
+Every story in this Storybook is decorated with the theme from the toolbar, so switching it in
+[EVA/Foundations/Theme](/story/eva-foundations-theme--dark-eva) — or on any other story — repaints every
+component on the page at once. Seeing the same component in both themes is how you tell a component defect
+from a theme decision.
