@@ -24,6 +24,15 @@ const meta = {
   title: "EVA/Primitives/Table",
   component: Table,
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      control: "text",
+      description:
+        "Width and any table-specific utilities. A wide table scrolls inside the component's own " +
+        "container rather than pushing the page — set `max-w-*` here to cap it.",
+      table: { category: "Styling" },
+    },
+  },
   parameters: {
     docs: {
       description: {

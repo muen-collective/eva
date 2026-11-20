@@ -17,3 +17,12 @@
   background: var(--background);
   color: var(--foreground);
 }
+
+/* In story view the stage fills the frame so a component is seen on its own page. In docs the same
+   wrapper is repeated once per story, so a viewport-tall stage turns every autodocs page into a
+   multi-thousand-pixel scroll — the props table ends up four screens below the description.
+   Docs blocks sit at their natural height instead. */
+.docs-story .eva-storybook-stage {
+  min-height: 0;
+  padding: 1.5rem;
+}
