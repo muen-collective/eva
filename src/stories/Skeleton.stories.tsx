@@ -14,6 +14,15 @@ const meta = {
   title: "EVA/Primitives/Skeleton",
   component: Skeleton,
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      control: "text",
+      description:
+        "The size and shape — the component sets only the pulse and the fill, so the geometry is yours: " +
+        "`h-4 w-48` for a line, `size-9 rounded-full` for an avatar.",
+      table: { category: "Styling" },
+    },
+  },
   parameters: {
     docs: {
       description: {

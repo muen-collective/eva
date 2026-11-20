@@ -21,6 +21,15 @@ const meta = {
   title: "EVA/Primitives/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      control: "text",
+      description:
+        "Layout utilities on the <nav>. The parts carry the structure — a breadcrumb assembled from " +
+        "bare divs loses the ordered list a screen reader needs.",
+      table: { category: "Styling" },
+    },
+  },
 } satisfies Meta<typeof Breadcrumb>
 
 export default meta
