@@ -88,6 +88,9 @@
   --card-gap: 20px;
   --card-radius: 20px;
   --card-media-radius: 16px;
+  --socket-size: 8px;
+  --socket-media: #2f9bd8;
+  --socket-text: #3fa37f;
   --card-icon-radius: 12px;
   --card-rule: rgba(0, 0, 0, 0.08);
   --card-media-bg: linear-gradient(180deg, #e4e4e4 0%, #ececec 100%);
@@ -154,6 +157,9 @@
   --card-gap: 20px;
   --card-radius: 20px;
   --card-media-radius: 16px;
+  --socket-size: 8px;
+  --socket-media: #2f9bd8;
+  --socket-text: #3fa37f;
   --card-icon-radius: 12px;
   --card-rule: rgba(0, 0, 0, 0.08);
   --card-media-bg: linear-gradient(180deg, #e4e4e4 0%, #ececec 100%);
@@ -209,6 +215,35 @@
   border-right-color: rgba(255, 255, 255, 0.28);
   border-radius: inherit;
   pointer-events: none;
+}
+
+/*
+ * A socket is a solid dot on the card's edge, and its noodle carries the same
+ * colour. Images are blue, text is green. The ring is the card ground, so the
+ * dot reads as cut into the plate rather than stuck on it.
+ */
+[data-eva-theme="muen"] .eva-socket {
+  display: inline-block;
+  flex: none;
+  width: var(--socket-size);
+  height: var(--socket-size);
+  border-radius: 999px;
+  background: var(--socket-media);
+  box-shadow: 0 0 0 2px var(--card);
+}
+
+[data-eva-theme="muen"] .eva-socket[data-kind="text"] {
+  background: var(--socket-text);
+}
+
+/* The noodle: a 2px line in the socket's own colour. */
+[data-eva-theme="muen"] .eva-noodle {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--socket-media);
+}
+[data-eva-theme="muen"] .eva-noodle[data-kind="text"] {
+  background: var(--socket-text);
 }
 
 /* The media is a deboss, not a second surface: the panel is pressed into the

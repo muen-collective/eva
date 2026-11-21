@@ -92,6 +92,7 @@ export {
   SelectValue,
 } from "./components/ui/select"
 
+export { Socket } from "./components/ui/socket"
 export { Separator } from "./components/ui/separator"
 
 export {
