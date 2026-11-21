@@ -91,6 +91,7 @@
   --socket-size: 8px;
   --socket-media: #2f9bd8;
   --socket-text: #3fa37f;
+  --socket-video: #c026d3;
   --card-icon-radius: 12px;
   --card-rule: rgba(0, 0, 0, 0.08);
   --card-media-bg: linear-gradient(180deg, #e4e4e4 0%, #ececec 100%);
@@ -160,6 +161,7 @@
   --socket-size: 8px;
   --socket-media: #2f9bd8;
   --socket-text: #3fa37f;
+  --socket-video: #c026d3;
   --card-icon-radius: 12px;
   --card-rule: rgba(0, 0, 0, 0.08);
   --card-media-bg: linear-gradient(180deg, #e4e4e4 0%, #ececec 100%);
@@ -236,6 +238,10 @@
   background: var(--socket-text);
 }
 
+[data-eva-theme="muen"] .eva-socket[data-kind="video"] {
+  background: var(--socket-video);
+}
+
 /* The noodle: a 2px line in the socket's own colour. */
 [data-eva-theme="muen"] .eva-noodle {
   height: 2px;
@@ -244,6 +250,9 @@
 }
 [data-eva-theme="muen"] .eva-noodle[data-kind="text"] {
   background: var(--socket-text);
+}
+[data-eva-theme="muen"] .eva-noodle[data-kind="video"] {
+  background: var(--socket-video);
 }
 
 /* The media is a deboss, not a second surface: the panel is pressed into the

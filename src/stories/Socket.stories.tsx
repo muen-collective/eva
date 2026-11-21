@@ -31,7 +31,7 @@ function Row({
   count,
   required,
 }: {
-  kind: "media" | "text"
+  kind: "media" | "text" | "video"
   label: string
   count: string
   required?: string
@@ -53,11 +53,14 @@ export const Sockets: Story = {
     <div className="flex flex-col gap-1">
       <Row kind="media" label="images" count="0/4" required="at least 1" />
       <Row kind="text" label="text prompt" count="0/1" required="required" />
+      <Row kind="video" label="video" count="1/1" />
       <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
         <span className="eva-noodle w-8" />
         images noodle
         <span className="eva-noodle w-8" data-kind="text" />
         text noodle
+        <span className="eva-noodle w-8" data-kind="video" />
+        video noodle
       </div>
     </div>
   ),

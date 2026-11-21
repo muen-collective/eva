@@ -14,14 +14,18 @@ function Socket({
   kind = "media",
   className,
   ...props
-}: React.ComponentProps<"span"> & { kind?: "media" | "text" }) {
+}: React.ComponentProps<"span"> & { kind?: "media" | "text" | "video" }) {
   return (
     <span
       data-slot="socket"
       data-kind={kind}
       className={cn(
         "inline-block size-2 shrink-0 rounded-full ring-2 ring-[var(--card)]",
-        kind === "media" ? "bg-[var(--socket-media)]" : "bg-[var(--socket-text)]",
+        kind === "media"
+          ? "bg-[var(--socket-media)]"
+          : kind === "video"
+            ? "bg-[var(--socket-video)]"
+            : "bg-[var(--socket-text)]",
         className
       )}
       {...props}
