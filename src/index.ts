@@ -92,6 +92,7 @@ export {
   SelectValue,
 } from "./components/ui/select"
 
+export { ResizeGrip } from "./components/ui/resize-grip"
 export { Socket } from "./components/ui/socket"
 export { Separator } from "./components/ui/separator"
 
