@@ -62,7 +62,7 @@ export const Default: Story = {
 
             <Message>
               <MessageContent>
-                <MessageHeader>Styling agent · turn 2</MessageHeader>
+                <MessageHeader>NERV agent · turn 2</MessageHeader>
                 <Trace className="px-3">
                   <TraceLine>
                     <TraceIcon>
@@ -110,7 +110,7 @@ export const Default: Story = {
 
             <Message>
               <MessageContent>
-                <MessageHeader>Styling agent · turn 3</MessageHeader>
+                <MessageHeader>NERV agent · turn 3</MessageHeader>
                 <Trace className="px-3">
                   <TraceLine status="pending">
                     <TraceIcon>

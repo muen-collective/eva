@@ -28,7 +28,7 @@ const meta = {
     <MessageGroup className="w-[420px]">
       <Message>
         <MessageContent>
-          <MessageHeader>Styling agent</MessageHeader>
+          <MessageHeader>NERV agent</MessageHeader>
           <p className="px-3 text-sm text-foreground">
             The side view is queued. I&apos;ll report back when the final lands.
           </p>
@@ -56,7 +56,7 @@ export const LongText: Story = {
     <MessageGroup className="w-[380px]">
       <Message>
         <MessageContent>
-          <MessageHeader>Styling agent</MessageHeader>
+          <MessageHeader>NERV agent</MessageHeader>
           <p className="px-3 text-sm text-foreground">
             I paired look 002 by camera view rather than by file order: b1 is front, b2 is the
             detail crop, b3 is the side and b4 is the back. The wipe now matches front under front.
