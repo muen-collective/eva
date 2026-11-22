@@ -98,6 +98,18 @@ export { Socket } from "./components/ui/socket"
 export { CompareStage, type CompareMode, type CompareFit } from "./components/ui/compare-stage"
 export { ReviewCard } from "./components/ui/review-card"
 export { ViewStrip, type StripView } from "./components/ui/view-strip"
+
+export { Message, MessageContent, MessageFooter, MessageGroup, MessageHeader } from "./components/ui/message"
+export {
+  Trace,
+  TraceLine,
+  TraceIcon,
+  TraceTitle,
+  TraceDescription,
+  TraceCollapsible,
+  TraceCollapsibleTrigger,
+  TraceCollapsibleContent,
+} from "./components/ui/trace"
 export { Separator } from "./components/ui/separator"
 
 export {

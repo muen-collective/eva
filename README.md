@@ -115,6 +115,28 @@ The styling review's three blocks. They compose the primitives above — no new 
 <CompareStage before={original} after={final} defaultMode="wipe" />
 ```
 
+## Conversation composites
+
+The message and trace grammar the agent loop window is built from — shadcn's anatomy, EVA's tokens.
+
+| Component | Props | What it is |
+|---|---|---|
+| `MessageGroup` / `Message` / `MessageContent` / `MessageHeader` / `MessageFooter` | `align?: "start" \| "end"` | One speaker's block: header names the speaker, content is the message, footer carries the time or cost. No avatar. |
+| `Trace` / `TraceLine` / `TraceIcon` / `TraceTitle` / `TraceDescription` | `TraceLine status?: "running" \| "error" \| "pending"` | An agent's work as one line per event; the title says what is happening. |
+| `TraceCollapsible` / `TraceCollapsibleTrigger` / `TraceCollapsibleContent` | Collapsible's `open` / `onOpenChange` | A line with more to say becomes a disclosure; the trigger is a real button with `aria-expanded`. |
+
+```tsx
+<MessageGroup>
+  <Message align="end">
+    <MessageContent>
+      <MessageHeader>You</MessageHeader>
+      <p>tighten the hem, keep the sleeve</p>
+      <MessageFooter>21:03</MessageFooter>
+    </MessageContent>
+  </Message>
+</MessageGroup>
+```
+
 ## Components (21 primitives)
 
 | Category | Components |
