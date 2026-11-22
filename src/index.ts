@@ -94,6 +94,10 @@ export {
 
 export { ResizeGrip } from "./components/ui/resize-grip"
 export { Socket } from "./components/ui/socket"
+
+export { CompareStage, type CompareMode, type CompareFit } from "./components/ui/compare-stage"
+export { ReviewCard } from "./components/ui/review-card"
+export { ViewStrip, type StripView } from "./components/ui/view-strip"
 export { Separator } from "./components/ui/separator"
 
 export {

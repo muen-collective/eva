@@ -99,6 +99,22 @@ primitives:
 **The Muen rule that outranks taste:** red is status — blocked, failed, pending — and never an
 action. The primary action is ink.
 
+## Review composites
+
+The styling review's three blocks. They compose the primitives above — no new behaviours, no hex.
+
+| Component | Props | What it is |
+|---|---|---|
+| `ReviewCard` | `src, alt, number, title, approved, total, meta?, disabled?` | One look in the grid: a 3:4 cover with the number, the name, `approved n/m` (a check at full) and the model line. One button; approval lives on the stage. |
+| `ViewStrip` | `views: StripView[], value, onValueChange?, ariaLabel?` | The views as a tablist: arrows move the selection, labels sit on the thumbs, approved views carry a check. |
+| `CompareStage` | `before, after, mode?/defaultMode?, fit?/defaultFit?, onModeChange?, onFitChange?, labels?` | The stage: a before/after wipe (role slider, arrows/Home/End) or side by side; fit or fill; the mode and fit controls under it. |
+
+```tsx
+<ReviewCard src={cover} number="001" title="Patchwork Beadwork" approved={1} total={4} meta="model Ayame" />
+<ViewStrip views={views} value={index} onValueChange={setIndex} />
+<CompareStage before={original} after={final} defaultMode="wipe" />
+```
+
 ## Components (21 primitives)
 
 | Category | Components |
