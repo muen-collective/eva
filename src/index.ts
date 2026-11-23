@@ -26,6 +26,17 @@ export {
 } from "./components/ui/alert-dialog"
 
 export { Badge, badgeVariants } from "./components/ui/badge"
+export {
+  Toast,
+  ToastProvider,
+  ToastViewport,
+  ToastRoot,
+  ToastTitle,
+  ToastDescription,
+  ToastAction,
+  ToastClose,
+  toastVariants,
+} from "./components/ui/toast"
 export { Button, buttonVariants } from "./components/ui/button"
 
 export {
@@ -124,6 +135,7 @@ export {
 } from "./components/ui/sheet"
 
 export { Skeleton } from "./components/ui/skeleton"
+export { Slider } from "./components/ui/slider"
 export { Switch } from "./components/ui/switch"
 
 export {

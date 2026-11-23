@@ -57,8 +57,22 @@
   --success-foreground: #ffffff;
   --warning: #b45309;
   --warning-foreground: #ffffff;
-  --info: #1f5fa8;
-  --info-foreground: #ffffff;
+  /*
+   * MARKUP — the annotation ink.
+   *
+   * The one layer that sits on top of a picture and must not hide in it: ink on a photograph is invisible and a
+   * hairline cannot be a mark. This is the theme's single chromatic accent, and it exists for exactly one job —
+   * the stroke a markup brush draws and the bubble where a comment sits. Semantic, not a colour name: if the
+   * accent ever changes, every surface that marks something follows.
+   *
+   * Chosen with the founder on 2026-11-11 after reviewing the shared board; the studio carried it app-side
+   * until this release. White on it is 5.3:1; it is 4.9:1 on the paper ground.
+   */
+  --markup: #d1006f;
+  --markup-foreground: #ffffff;
+
+  --info: #1b2a4a;
+  --info-foreground: #f6f6f6;
   --chart-1: #0a0a0a;
   --chart-2: #c62a3e;
   --chart-3: #a1a1aa;
@@ -136,7 +150,7 @@
   --success-foreground: #08120b;
   --warning: #d6a75f;
   --warning-foreground: #160f06;
-  --info: #93b3cc;
+  --info: #8aa2c4;
   --info-foreground: #07111a;
   --chart-1: #e7e2d4;
   --chart-2: #b9a17a;
@@ -171,7 +185,14 @@
  * The card IS the wall: no outer border, no second surface. Seven small
  * stacked shadows plus a 3px white inset lift it, and `::after` draws the 1px
  * inner stroke along the top edge and radius. Nothing moves on hover — the
- * pool deepens.
+ * pool deepens, and that pool has a name (`--card-shadow-hover`) so the state
+ * map can point at it.
+ *
+ * The card has four states. Hover and focus are transient and stay with the
+ * browser; **selected** and **disabled** are persistent facts about the card,
+ * so they are a `data-state` the surface sets. Selection takes the plate and an
+ * inset hairline rather than a border, so the card's box never moves; disabled
+ * is the same card at half weight with no pointer.
  */
 [data-eva-theme="muen"] .eva-card {
   --card-shadow:
@@ -181,6 +202,15 @@
     0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.07),
     0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.05),
     0 30px 30px -4px rgba(0, 0, 0, 0.02),
+    inset 0 3px 1px 0 #ffffff;
+
+  --card-shadow-hover:
+    0 0.706592px 0.706592px -0.666667px rgba(0, 0, 0, 0.09),
+    0 1.80656px 1.80656px -1.33333px rgba(0, 0, 0, 0.09),
+    0 3.62176px 3.62176px -2px rgba(0, 0, 0, 0.08),
+    0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.08),
+    0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.06),
+    0 36px 36px -6px rgba(0, 0, 0, 0.03),
     inset 0 3px 1px 0 #ffffff;
 
   position: relative;
@@ -197,14 +227,19 @@
 }
 
 [data-eva-theme="muen"] .eva-card:hover {
-  box-shadow:
-    0 0.706592px 0.706592px -0.666667px rgba(0, 0, 0, 0.09),
-    0 1.80656px 1.80656px -1.33333px rgba(0, 0, 0, 0.09),
-    0 3.62176px 3.62176px -2px rgba(0, 0, 0, 0.08),
-    0 6.8656px 6.8656px -2.66667px rgba(0, 0, 0, 0.08),
-    0 13.6468px 13.6468px -3.33333px rgba(0, 0, 0, 0.06),
-    0 36px 36px -6px rgba(0, 0, 0, 0.03),
-    inset 0 3px 1px 0 #ffffff;
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Persistent states: the surface sets `data-state`; the theme owns the material.
+   Selected sits after :hover so a selected card keeps its settled edge. */
+[data-eva-theme="muen"] .eva-card[data-state="selected"] {
+  background: var(--plate);
+  box-shadow: var(--card-shadow), inset 0 0 0 1px var(--border);
+}
+
+[data-eva-theme="muen"] .eva-card[data-state="disabled"] {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 [data-eva-theme="muen"] .eva-card::after {

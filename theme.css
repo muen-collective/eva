@@ -49,6 +49,9 @@
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
 
+  --color-markup: var(--markup);
+  --color-markup-foreground: var(--markup-foreground);
+
   --color-inverse: var(--inverse);
   --color-inverse-foreground: var(--inverse-foreground);
 

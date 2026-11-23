@@ -137,7 +137,7 @@ The message and trace grammar the agent loop window is built from — shadcn's a
 </MessageGroup>
 ```
 
-## Components (22 primitives)
+## Components (24 primitives)
 
 | Category | Components |
 | --- | --- |
@@ -145,7 +145,8 @@ The message and trace grammar the agent loop window is built from — shadcn's a
 | Selection | Tabs, Select, Switch, Toggle, ToggleGroup |
 | Forms | Input, Textarea, Label |
 | Layout | Card, Separator, ScrollArea, Table, Collapsible |
-| Feedback | Alert, Badge, Skeleton |
+| Feedback | Alert, Badge, Skeleton, Toast |
+| Input | Slider |
 | People | Avatar, AvatarGroup |
 
 Plus `Button` and `cn()` / `buttonVariants` / `badgeVariants` / `tabsListVariants` / `toggleVariants`.
