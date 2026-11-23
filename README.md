@@ -137,7 +137,7 @@ The message and trace grammar the agent loop window is built from — shadcn's a
 </MessageGroup>
 ```
 
-## Components (21 primitives)
+## Components (22 primitives)
 
 | Category | Components |
 | --- | --- |
@@ -146,6 +146,7 @@ The message and trace grammar the agent loop window is built from — shadcn's a
 | Forms | Input, Textarea, Label |
 | Layout | Card, Separator, ScrollArea, Table, Collapsible |
 | Feedback | Alert, Badge, Skeleton |
+| People | Avatar, AvatarGroup |
 
 Plus `Button` and `cn()` / `buttonVariants` / `badgeVariants` / `tabsListVariants` / `toggleVariants`.
 
@@ -155,6 +156,13 @@ chosen) and `type="multiple"` a pressed-button group. Items are **separate butto
 group. The group passes `variant`, `size`, `spacing` and `orientation` down to its items, so a row cannot
 disagree with itself. The pressed state is ink, not `--accent` — a filter that is on has to read as a
 decision, not a hover.
+
+**Avatar** is a face. `AvatarFallback` is the default, not a loading placeholder — initials carry identity here,
+because nobody has uploaded a picture. `AvatarBadge` means **at-limit**, never online-presence: the component owns
+the shape (a corner plate ringed against whatever sits behind it) and the caller supplies the colour token, because
+what a badge *means* belongs to the screen. `AvatarGroup` touches the faces (`-space-x-2`) — separated circles
+cannot say "these belong to one board" — and `AvatarGroupCount` folds the remainder as a face-shaped `+3` so it sits
+in the same rhythm instead of beside it.
 
 **LockButton** is a lock that opens when pressed. lucide's Lock is split into its two parts so the shackle can
 move — the body stays still, the shackle swings about its **right foot** to 35°, and the free end lifts on the

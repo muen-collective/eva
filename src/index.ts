@@ -194,3 +194,12 @@ export {
   FieldContent,
   FieldTitle,
 } from "./components/ui/field"
+
+export {
+  Avatar,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from "./components/ui/avatar"
